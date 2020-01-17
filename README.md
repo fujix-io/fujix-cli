@@ -1,0 +1,1 @@
+# FujiX CLI

@@ -1,0 +1,61 @@
+{
+ "name": "@fujix/cli",
+ "version": "0.0.1",
+ "bin": {
+  "fujix": "./lib/index.js"
+ },
+ "types": "./lib/index.d.ts",
+ "author": "Alexey Maligon (fania@milkandcartoons.com)",
+ "license": "MIT",
+ "engines": {
+  "node": ">=8"
+ },
+ "files": [
+  "./lib/index.js"
+ ],
+ "scripts": {
+  "patch": "yarn run build && npm version patch && npm publish",
+  "minor": "yarn run build && npm version minor && npm publish",
+  "major": "yarn run build && npm version major && npm publish",
+  "build": "rm -rf lib && tsc --declaration && npm link",
+  "test": "yarn build && fujix"
+ },
+ "babel": {
+  "presets": [
+   "@babel/preset-react",
+   [
+    "@babel/preset-env",
+    {
+     "targets": {
+      "node": true
+     }
+    }
+   ]
+  ]
+ },
+ "devDependencies": {
+  "@babel/preset-env": "^7.8.3",
+  "@babel/preset-react": "^7.8.3",
+  "@types/ink-spinner": "^2.0.3",
+  "@types/ink-text-input": "^2.0.1",
+  "@types/node": "^13.1.6",
+  "@types/react": "^16.9.17",
+  "@types/request-promise": "^4.1.45",
+  "ts-node-dev": "^1.0.0-pre.44",
+  "typescript": "^2.9.2"
+ },
+ "dependencies": {
+  "arg": "^4.1.2",
+  "import-jsx": "^3.1.0",
+  "ink": "^2.6.0",
+  "ink-spinner": "^3.0.1",
+  "ink-text-input": "^3.2.2",
+  "lodash": "^4.17.11",
+  "meow": "^6.0.0",
+  "prop-types": "^15.7.2",
+  "react": "^16.12.0",
+  "request": "^2.88.0",
+  "request-promise": "^4.2.5",
+  "utility-types": "^3.10.0"
+ }
+}
