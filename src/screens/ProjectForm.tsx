@@ -11,6 +11,7 @@ type InputNames = 'url' | 'token';
 
 import checkIntrospectionQuery from '../helpers/check-introspection-query';
 import validateUrl from '../helpers/validate-url';
+import useRouter from '../hooks/useRouter';
 
 type Values = {
   [key in InputNames]: string
@@ -35,7 +36,8 @@ const inputs: InputSingature[] = [{
 ]
 
 const ProjectForm: React.FC<IAppContext> = ({ command }) => {
-  const ctx = useContext(RouterContext)
+  const router = useRouter();
+
   const [authChecking, setAuthChecking] = React.useState(false);
   const [values, setValues] = React.useState<Values>({ url: '', token: '' });
   const [active, setActive] = React.useState(0);
@@ -69,7 +71,7 @@ const ProjectForm: React.FC<IAppContext> = ({ command }) => {
       const isValidUrl = validateUrl(credentials.url);
 
       if (!isValidUrl) {
-        ctx.setRoute('message', { params: { text: <Box><Color red>🤷 Url is invalid</Color> </Box> } });
+        router.setRoute('message', { params: { text: <Box><Color red>🤷 Url is invalid</Color> </Box> } });
       }
 
       writeFileSync(`${process.cwd()}/fujix-credentials.json`, JSON.stringify(credentials));
@@ -79,11 +81,11 @@ const ProjectForm: React.FC<IAppContext> = ({ command }) => {
       setAuthChecking(false);
 
       if (!result) {
-        ctx.setRoute('message', { params: { text: <Box><Color red>🙅 Endpoint does not response or token is invalid</Color> </Box> } });
+        router.setRoute('message', { params: { text: <Box><Color red>🙅 Endpoint does not response or token is invalid</Color> </Box> } });
       }
 
       if (command === 'login' && result) {
-        ctx.setRoute('message', { params: { text: `🎉 You successfully logged in for app - ${values.url}` } });
+        router.setRoute('message', { params: { text: `🎉 You successfully logged in for app - ${values.url}` } });
       }
       
     }
