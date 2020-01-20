@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppProps, Box } from 'ink';
 
-import ProjectForm from './screens/ProjectForm';
+import ProjectForm from './screens/ProjectFormScreen';
 import GenerateScreen from './screens/GenerateScreen';
 import MessageScreen from './screens/MessageScreen';
 import HealthCheck from './screens/HealthCheck';

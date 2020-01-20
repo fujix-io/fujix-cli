@@ -3,11 +3,14 @@ import fs from 'fs';
 
 import { Box, Color } from 'ink'
 import Spinner from 'ink-spinner';
+
 import checkIntrospectionQuery from '../helpers/check-introspection-query';
 import useRouter from '../hooks/useRouter';
+import useApp from '../hooks/useApp';
 
 const HealthCheck = () => {
   const router = useRouter();
+  const { args } = useApp();
   const [checking, setChecking] = useState(false);
   const [credentials, setCredentials] = useState<Credentials>({ url: '', token: '' });
 
@@ -18,6 +21,7 @@ const HealthCheck = () => {
   }, [])
 
   const checkEndpoint = async () => {
+    const isGenerate = args[0] === 'generate';
     setChecking(true);
 
     const result = await checkIntrospectionQuery(credentials)
@@ -25,7 +29,11 @@ const HealthCheck = () => {
     if (!result) {
       router.setRoute('message', { params: { text: <Box><Color red>🙅 {credentials.url} does not response or token is invalid</Color> </Box> } });
     } else {
-      router.setRoute('message', { params: { text: <Box><Color hex="#7bed9f">🎉 {credentials.url} is healthfull!</Color> </Box> } });
+      if (isGenerate) {
+        router.setRoute('generate');
+      } else {
+        router.setRoute('message', { params: { text: <Box><Color hex="#7bed9f">🎉 {credentials.url} is healthfull!</Color> </Box> } });
+      }
     }
   }
 
@@ -38,11 +46,11 @@ const HealthCheck = () => {
   if (checking && credentials.url && credentials.token) {
     return (
       <Box paddingLeft={1} paddingTop={1}>
-        <Color hex="#70a1ff"><Spinner type="dots"/></Color> Checking ${credentials.url}
+        <Color hex="#70a1ff"><Spinner type="dots"/></Color> Checking {credentials.url}
       </Box>
     )
   } else {
-    return null;
+    return null
   }
 }
 

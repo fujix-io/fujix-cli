@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Box, Text, Color, useInput, useApp } from 'ink'
+import { Box, Text, Color, useInput } from 'ink'
 import Spinner from 'ink-spinner';
 import { writeFileSync } from 'fs';
 
@@ -12,6 +12,7 @@ type InputNames = 'url' | 'token';
 import checkIntrospectionQuery from '../helpers/check-introspection-query';
 import validateUrl from '../helpers/validate-url';
 import useRouter from '../hooks/useRouter';
+import useApp from '../hooks/useApp';
 
 type Values = {
   [key in InputNames]: string
@@ -35,8 +36,9 @@ const inputs: InputSingature[] = [{
   }
 ]
 
-const ProjectForm: React.FC<IAppContext> = ({ command }) => {
+const ProjectForm: React.FC<IAppContext> = () => {
   const router = useRouter();
+  const { args } = useApp();
 
   const [authChecking, setAuthChecking] = React.useState(false);
   const [values, setValues] = React.useState<Values>({ url: '', token: '' });
@@ -84,10 +86,16 @@ const ProjectForm: React.FC<IAppContext> = ({ command }) => {
         router.setRoute('message', { params: { text: <Box><Color red>🙅 Endpoint does not response or token is invalid</Color> </Box> } });
       }
 
-      if (command === 'login' && result) {
+      if (args[0] === 'login' && result) {
         router.setRoute('message', { params: { text: `🎉 You successfully logged in for app - ${values.url}`} });
       }
       
+      if (args[0] === 'generate' && result) {
+        process.env.FUJIX_ROOT_TOKEN = credentials.token;
+        process.env.FUJIX_PROJECT_URL = credentials.url;
+
+        router.setRoute('ping');
+      }
     }
   }
   
