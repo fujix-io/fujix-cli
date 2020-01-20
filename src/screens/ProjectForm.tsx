@@ -85,7 +85,7 @@ const ProjectForm: React.FC<IAppContext> = ({ command }) => {
       }
 
       if (command === 'login' && result) {
-        router.setRoute('message', { params: { text: `🎉 You successfully logged in for app - ${values.url}` } });
+        router.setRoute('message', { params: { text: `🎉 You successfully logged in for app - ${values.url}`} });
       }
       
     }
@@ -108,7 +108,11 @@ const ProjectForm: React.FC<IAppContext> = ({ command }) => {
                   if (active === inputs.length - 1) {
                     onSubmit();
                   } else {
-                    setActive(index + 1);
+                    if (values.url && values.token) {
+                      onSubmit();
+                    } else { 
+                      setActive(index + 1);
+                    }
                   }
                 }}
               />
