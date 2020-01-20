@@ -125,7 +125,7 @@ const ProjectForm: React.FC<IAppContext> = () => {
                 }}
               />
             </Color>
-            : values[name] && <Color gray>{values[name]}</Color> || (placeholder && <Color gray>{placeholder}</Color>)
+            : values[name] && <Color hex="#ced6e0">{values[name]}</Color> || (placeholder && <Color hex="#ced6e0">{placeholder}</Color>)
           }
         </Box>
       ))}

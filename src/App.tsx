@@ -1,5 +1,7 @@
 import React from 'react'
-import { AppProps, Box } from 'ink';
+import { AppProps, Box, Color } from 'ink';
+
+const Divider = require('ink-divider');
 
 import ProjectForm from './screens/ProjectFormScreen';
 import GenerateScreen from './screens/GenerateScreen';
@@ -39,7 +41,14 @@ const App: React.FC<CLIAppProps> = ({ command, args, exit }) => {
     exit(); return null; 
   }
 
+  const rootCommand = args[0]
+
   return <Box flexDirection="column">
+      {/* <Box padding={1}> */}
+      <Divider
+        title={`FujiX - ${rootCommand.charAt(0).toUpperCase() + rootCommand.slice(1)}`}
+      />
+      {/* </Box> */}
       <AppProvider args={args} command={command}>
         <Router defaultRoute={command}>
           {routes.map(route => (

@@ -11,7 +11,7 @@ import useApp from '../hooks/useApp';
 const HealthCheck = () => {
   const router = useRouter();
   const { args } = useApp();
-  const [checking, setChecking] = useState(false);
+  const [checking, setChecking] = useState(true);
   const [credentials, setCredentials] = useState<Credentials>({ url: '', token: '' });
 
   useEffect(() => {
@@ -22,17 +22,32 @@ const HealthCheck = () => {
 
   const checkEndpoint = async () => {
     const isGenerate = args[0] === 'generate';
-    setChecking(true);
 
+    const now = Date.now();
     const result = await checkIntrospectionQuery(credentials)
-    setChecking(false);
     if (!result) {
-      router.setRoute('message', { params: { text: <Box><Color red>🙅 {credentials.url} does not response or token is invalid</Color> </Box> } });
+      setChecking(false);
+      router.setRoute('message', {
+        params: {
+          text: <Box>
+            <Color red>🌑 {credentials.url} does not response or token is invalid</Color>
+          </Box>
+        }
+      });
     } else {
       if (isGenerate) {
         router.setRoute('generate');
       } else {
-        router.setRoute('message', { params: { text: <Box><Color hex="#7bed9f">🎉 {credentials.url} is healthfull!</Color> </Box> } });
+        const diff = Date.now() - now;
+
+        router.setRoute('message', {
+          params: {
+            text: <Box flexDirection="column">
+              <Box marginBottom={1}><Color hex="#7bed9f">🚀 {credentials.url} is running up!</Color></Box>
+              <Box><Color hex="#5352ed">🌎 Ping: {diff}ms </Color></Box>
+            </Box>
+          }
+        });
       }
     }
   }
@@ -46,7 +61,7 @@ const HealthCheck = () => {
   if (checking && credentials.url && credentials.token) {
     return (
       <Box paddingLeft={1} paddingTop={1}>
-        <Color hex="#70a1ff"><Spinner type="dots"/></Color> Checking {credentials.url}
+        <Color hex="#ced6e0"><Spinner type="moon"/></Color> Checking {credentials.url}
       </Box>
     )
   } else {
