@@ -1,12 +1,13 @@
 import fs from 'fs';
 
 import initInk from "../components/common/init-ink"
+import { Args } from '../components/context/AppContext';
 
-const generate = (args: string[], flags: any) => {
+const generate = (args: string[], flags: Args) => {
   const credentialsExists = fs.existsSync(`${process.cwd()}/fujix-credentials.json`);
   
   if (!credentialsExists) {
-    return initInk('login', args);
+    return initInk('login', args, flags);
   } else {
     const credentialsJSON = fs.readFileSync(`${process.cwd()}/fujix-credentials.json`, { encoding: 'utf-8' });
     const credentials: Credentials = JSON.parse(credentialsJSON);
@@ -16,7 +17,7 @@ const generate = (args: string[], flags: any) => {
       process.env.FUJIX_PROJECT_URL = credentials.url;
     }
 
-    return initInk('ping', args);
+    return initInk('ping', args, flags);
   } 
 }
 

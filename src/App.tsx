@@ -10,10 +10,12 @@ import HealthCheck from './screens/HealthCheck';
 
 import AppProvider from './components/context/AppProvider';
 import { Route, Router } from './components/router/Router';
+import { Args } from './components/context/AppContext';
 
 interface CLIAppProps extends AppProps {
   command: string;
   args: string[]
+  flags: Args
 }
 
 const routes = [
@@ -35,7 +37,7 @@ const routes = [
   },
 ];
 
-const App: React.FC<CLIAppProps> = ({ command, args, exit }) => {
+const App: React.FC<CLIAppProps> = ({ command, args, exit, flags }) => {
   
   if (!command) {
     exit(); return null; 
@@ -49,13 +51,14 @@ const App: React.FC<CLIAppProps> = ({ command, args, exit }) => {
         title={`FujiX - ${rootCommand.charAt(0).toUpperCase() + rootCommand.slice(1)}`}
       />
       {/* </Box> */}
-      <AppProvider args={args} command={command}>
+      <AppProvider flags={flags} args={args} command={command}>
         <Router defaultRoute={command}>
           {routes.map(route => (
             <Route key={route.routeKey} component={<route.component />} path={route.routeKey} />
           ))}
         </Router>
       </AppProvider>
+      <Divider />
     </Box>
 }
 

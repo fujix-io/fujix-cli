@@ -1,8 +1,8 @@
 import { Args } from '../components/context/AppContext';
 import initInk from '../components/common/init-ink'
 
-const ping = (args: string[], flags: Args) => {
-  return initInk('ping', args, flags);
+const help = (args: string[], flags: Args) => {
+  return initInk('help', args, flags);
 }
 
-export default ping;
+export default help;

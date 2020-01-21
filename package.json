@@ -40,6 +40,7 @@
   "@types/ink-text-input": "^2.0.1",
   "@types/react": "^16.9.17",
   "@types/request-promise": "^4.1.45",
+  "@types/rimraf": "^2.0.3",
   "ts-node-dev": "^1.0.0-pre.44",
   "typescript": "^3.7.5"
  },
@@ -49,11 +50,12 @@
   "apollo-link-http": "^1.5.16",
   "arg": "^4.1.2",
   "async": "^3.1.0",
+  "dotenv": "^8.2.0",
   "graphql": "^14.5.8",
+  "graphql-binding": "^2.5.2",
   "graphql-tools": "^4.0.6",
   "import-jsx": "^3.1.0",
   "ink": "^2.6.0",
-  "ink-box": "^1.0.0",
   "ink-divider": "^2.0.1",
   "ink-spinner": "^3.0.1",
   "ink-text-input": "^3.2.2",
@@ -64,6 +66,8 @@
   "react": "^16.12.0",
   "request": "^2.88.0",
   "request-promise": "^4.2.5",
+  "rimraf": "^3.0.0",
+  "ts-node": "^8.6.2",
   "utility-types": "^3.10.0"
  }
 }

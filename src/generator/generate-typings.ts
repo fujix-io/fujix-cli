@@ -1,19 +1,21 @@
 import { generate } from '@graphql-codegen/cli';
 
-const generateTypings = async (credentials: Credentials): Promise<boolean> => {
+import { GENERATED_DIR_PATH, MethodOptions } from '.';
+
+const generateTypings = async (options: MethodOptions): Promise<boolean> => {
   try {
     await generate(
       {
         schema: {
-          [credentials.url]: {
+          [options.url]: {
             headers: {
-              Authorization: credentials.token,
+              Authorization: options.token,
             }
           }
         },
         silent: true,
         generates: {
-          [`${process.cwd()}/fujix-generated/typings.ts`]: {
+          [`${GENERATED_DIR_PATH(options.context.flags['--out'])}/typings.d.ts`]: {
             plugins: ['typescript'],
           },
         },

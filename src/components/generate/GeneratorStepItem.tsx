@@ -2,6 +2,7 @@ import React from 'react'
 import Spinner from 'ink-spinner';
 import { Box, Color } from 'ink';
 import {  StepState } from '../../screens/GenerateScreen';
+import colors from '../../colors';
 
 interface GeneratorStepItemProps extends StepState {
   isActive?: boolean
@@ -18,16 +19,26 @@ const GeneratorStepItem: React.FC<GeneratorStepItemProps> = ({ status, label, is
       default: return null;
     }
   }
-
   
+    const getExecutionLabelColor = () => {
+      switch (status) {
+        case 'failed':
+          return colors.danger;
+        case 'success':
+          return colors.success;
+        default:
+          return colors.white
+      }
+    }
+
     const getLabelColor = () => {
       switch (status) {
         case 'failed':
-          return '#ff4757';
+          return colors.danger;
         case 'success':
-          return '#7bed9f';
+          return colors.white;
         default:
-          return '#f1f2f6'
+          return colors.white
       }
     }
 
@@ -35,7 +46,7 @@ const GeneratorStepItem: React.FC<GeneratorStepItemProps> = ({ status, label, is
     return <Color hex={getLabelColor()}>{label}</Color>
   }
 
-  const getExecutionTime = () => executionTime && <Color hex={getLabelColor()}>{executionTime}ms</Color>
+  const getExecutionTime = () => executionTime && <Color hex={getExecutionLabelColor()}>{executionTime}ms</Color>
 
   return (
     <Box marginBottom={1} flexDirection="row">

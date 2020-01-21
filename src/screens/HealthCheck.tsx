@@ -7,6 +7,7 @@ import Spinner from 'ink-spinner';
 import checkIntrospectionQuery from '../helpers/check-introspection-query';
 import useRouter from '../hooks/useRouter';
 import useApp from '../hooks/useApp';
+import colors from '../colors';
 
 const HealthCheck = () => {
   const router = useRouter();
@@ -29,8 +30,8 @@ const HealthCheck = () => {
       setChecking(false);
       router.setRoute('message', {
         params: {
-          text: <Box>
-            <Color red>🌑 {credentials.url} does not response or token is invalid</Color>
+          text: <Box paddingLeft={1}>
+            <Color hex={colors.danger}>🌑 {credentials.url} does not response or token is invalid</Color>
           </Box>
         }
       });
@@ -42,9 +43,9 @@ const HealthCheck = () => {
 
         router.setRoute('message', {
           params: {
-            text: <Box flexDirection="column">
-              <Box marginBottom={1}><Color hex="#7bed9f">🚀 {credentials.url} is running up!</Color></Box>
-              <Box><Color hex="#5352ed">🌎 Ping: {diff}ms </Color></Box>
+            text: <Box paddingLeft={1} flexDirection="column">
+              <Box marginBottom={1}><Color hex={colors.white}>🚀 {credentials.url} is running up!</Color></Box>
+              <Box><Color hex={colors.success}>🌎 Ping: {diff}ms </Color></Box>
             </Box>
           }
         });
@@ -60,8 +61,8 @@ const HealthCheck = () => {
 
   if (checking && credentials.url && credentials.token) {
     return (
-      <Box paddingLeft={1} paddingTop={1}>
-        <Color hex="#ced6e0"><Spinner type="moon"/></Color> Checking {credentials.url}
+      <Box padding={1}>
+        <Color hex={colors.white}><Spinner type="moon"/></Color> Checking {credentials.url}
       </Box>
     )
   } else {

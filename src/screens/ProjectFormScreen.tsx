@@ -13,6 +13,7 @@ import checkIntrospectionQuery from '../helpers/check-introspection-query';
 import validateUrl from '../helpers/validate-url';
 import useRouter from '../hooks/useRouter';
 import useApp from '../hooks/useApp';
+import colors from '../colors';
 
 type Values = {
   [key in InputNames]: string
@@ -103,11 +104,11 @@ const ProjectForm: React.FC<IAppContext> = () => {
     <Box paddingLeft={1} paddingTop={1} paddingBottom={1} flexDirection="column">
       {inputs.map(({ name, label, placeholder }, index) => (
         <Box key={name} flexDirection="row">
-          <Color hex="#686de0">
+          <Color hex={colors.warning}>
             <Text bold={active === index}>{label}</Text>
           </Color>
           {active === index
-            ? <Color hex="#dff9fb">
+            ? <Color hex={colors.white}>
                 <TextInput
                 placeholder={placeholder}
                 value={values[name]}
@@ -125,11 +126,11 @@ const ProjectForm: React.FC<IAppContext> = () => {
                 }}
               />
             </Color>
-            : values[name] && <Color hex="#ced6e0">{values[name]}</Color> || (placeholder && <Color hex="#ced6e0">{placeholder}</Color>)
+            : values[name] && <Color hex={colors.gray}>{values[name]}</Color> || (placeholder && <Color hex={colors.gray}>{placeholder}</Color>)
           }
         </Box>
       ))}
-      {authChecking && <Box><Color green><Spinner type="dots"/></Color> Logging in</Box>}
+      {authChecking && <Box paddingLeft={1} paddingTop={1}><Color hex={colors.success}><Spinner type="dots"/></Color> Logging in</Box>}
   </Box>
   )
 }
