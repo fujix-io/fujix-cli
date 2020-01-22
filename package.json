@@ -17,7 +17,7 @@
   "patch": "yarn run build && npm version patch && npm publish",
   "minor": "yarn run build && npm version minor && npm publish",
   "major": "yarn run build && npm version major && npm publish",
-  "build": "rm -rf lib && tsc --declaration && npm link",
+  "build": "rm -rf lib && tsc --declaration && npm link @fujix/cli",
   "test": "yarn build && fujix"
  },
  "babel": {

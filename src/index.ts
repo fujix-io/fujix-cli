@@ -25,7 +25,7 @@ const main = async (): Promise<any> => {
 
   const args = { ...flags, '--language': language };
 
-  if (args['--help']) {
+  if (args['--help'] || !args._.length) {
     return help(['help'], args);
   }
 
