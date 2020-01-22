@@ -8,6 +8,7 @@ import checkIntrospectionQuery from '../helpers/check-introspection-query';
 import useRouter from '../hooks/useRouter';
 import useApp from '../hooks/useApp';
 import colors from '../colors';
+import { ROOT_DIR } from '../generator';
 
 const HealthCheck = () => {
   const router = useRouter();
@@ -16,13 +17,13 @@ const HealthCheck = () => {
   const [credentials, setCredentials] = useState<Credentials>({ url: '', token: '' });
 
   useEffect(() => {
-    const credentials = JSON.parse(fs.readFileSync(`${process.cwd()}/fujix-credentials.json`, { encoding: 'utf-8' }));
+    const credentials = JSON.parse(fs.readFileSync(`${ROOT_DIR()}/fujix-credentials.json`, { encoding: 'utf-8' }));
     
     setCredentials(credentials);
   }, [])
 
   const checkEndpoint = async () => {
-    const isGenerate = args[0] === 'generate';
+    const isGenerate = args[0] === 'generate' || args[0] === 'init';
 
     const now = Date.now();
     const result = await checkIntrospectionQuery(credentials)

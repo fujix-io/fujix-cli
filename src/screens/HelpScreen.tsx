@@ -10,11 +10,9 @@ const helps = [
   'fujix ping - Check endpoint availability',
 ]
 
-const MessageScreen: React.FC = () => {
+const HelpScreen: React.FC = () => {
   const { exit } = useApp();
   const router = useRouter();
-
-  const text = router.activeRouteParams.text;
 
   return (<Box padding={1} flexDirection="column">
       {helps.map(help => (
@@ -22,8 +20,7 @@ const MessageScreen: React.FC = () => {
           <Color hex={colors.success}>{help}</Color>
         </Box>
       ))}
-      
     </Box>)
 }
 
-export default MessageScreen
+export default HelpScreen

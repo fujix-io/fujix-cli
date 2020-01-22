@@ -6,6 +6,7 @@ const Divider = require('ink-divider');
 import ProjectForm from './screens/ProjectFormScreen';
 import GenerateScreen from './screens/GenerateScreen';
 import MessageScreen from './screens/MessageScreen';
+import HelpScreen from './screens/HelpScreen';
 import HealthCheck from './screens/HealthCheck';
 
 import AppProvider from './components/context/AppProvider';
@@ -28,6 +29,10 @@ const routes = [
     routeKey: 'ping'
   },
   {
+    component: HelpScreen,
+    routeKey: 'help'
+  },
+  {
     component: GenerateScreen,
     routeKey: 'generate'
   },
@@ -43,7 +48,7 @@ const App: React.FC<CLIAppProps> = ({ command, args, exit, flags }) => {
     exit(); return null; 
   }
 
-  const rootCommand = args[0]
+  const rootCommand = args[0] 
 
   return <Box flexDirection="column">
       {/* <Box padding={1}> */}

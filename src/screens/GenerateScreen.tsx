@@ -58,7 +58,6 @@ const GenerateScreen = () => {
           break;
         }
       }
-
       setStep('')
     }
   }

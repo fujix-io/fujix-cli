@@ -14,6 +14,7 @@ import validateUrl from '../helpers/validate-url';
 import useRouter from '../hooks/useRouter';
 import useApp from '../hooks/useApp';
 import colors from '../colors';
+import { GENERATED_DIR_PATH, ROOT_DIR } from '../generator';
 
 type Values = {
   [key in InputNames]: string
@@ -39,7 +40,7 @@ const inputs: InputSingature[] = [{
 
 const ProjectForm: React.FC<IAppContext> = () => {
   const router = useRouter();
-  const { args } = useApp();
+  const { args, flags } = useApp();
 
   const [authChecking, setAuthChecking] = React.useState(false);
   const [values, setValues] = React.useState<Values>({ url: '', token: '' });
@@ -66,6 +67,7 @@ const ProjectForm: React.FC<IAppContext> = () => {
 
   const onSubmit = async () => {
     if (values.token && values.url) {
+      const isGenerate = args[0] === 'generate' || args[0] === 'init';
       const credentials: Credentials = {
         token: values.token,
         url: values.url
@@ -77,7 +79,7 @@ const ProjectForm: React.FC<IAppContext> = () => {
         router.setRoute('message', { params: { text: <Box><Color red>🤷 Url is invalid</Color> </Box> } });
       }
 
-      writeFileSync(`${process.cwd()}/fujix-credentials.json`, JSON.stringify(credentials));
+      writeFileSync(`${ROOT_DIR()}/fujix-credentials.json`, JSON.stringify(credentials));
       
       setAuthChecking(true);
       const result = await checkIntrospectionQuery(credentials)
@@ -91,7 +93,7 @@ const ProjectForm: React.FC<IAppContext> = () => {
         router.setRoute('message', { params: { text: `🎉 You successfully logged in for app - ${values.url}`} });
       }
       
-      if (args[0] === 'generate' && result) {
+      if (isGenerate && result) {
         process.env.FUJIX_ROOT_TOKEN = credentials.token;
         process.env.FUJIX_PROJECT_URL = credentials.url;
 
