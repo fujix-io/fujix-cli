@@ -17,7 +17,7 @@
   "patch": "yarn run build && npm version patch && npm publish",
   "minor": "yarn run build && npm version minor && npm publish",
   "major": "yarn run build && npm version major && npm publish",
-  "build": "rm -rf lib && tsc --declaration && npm link @fujix/cli",
+  "build": "rm -rf lib && tsc --declaration && npm link",
   "test": "yarn build && fujix"
  },
  "babel": {
@@ -38,10 +38,14 @@
   "@babel/preset-react": "^7.8.3",
   "@types/ink-spinner": "^2.0.3",
   "@types/ink-text-input": "^2.0.1",
+  "@types/node": "^13.1.8",
   "@types/react": "^16.9.17",
   "@types/request-promise": "^4.1.45",
   "@types/rimraf": "^2.0.3",
   "ts-node-dev": "^1.0.0-pre.44",
+  "tslint": "5.13.0",
+  "tslint-config-airbnb": "5.11.1",
+  "tslint-config-prettier": "1.18.0",
   "typescript": "^3.7.5"
  },
  "dependencies": {

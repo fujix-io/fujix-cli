@@ -1,15 +1,15 @@
 import React from 'react';
 import { Subtract } from 'utility-types';
 
-import AppContext, { IAppContext } from './AppContext';
+import AppContext, { AppContextType } from './AppContext';
 
-const withAppContext = <P extends IAppContext>
-  (Component: React.FC<P>): React.FC<Subtract<P, IAppContext>> =>  
-    (props => 
+const withAppContext = <P extends AppContextType>
+  (Component: React.FC<P>): React.FC<Subtract<P, AppContextType>> =>
+    (props =>
       <AppContext.Consumer>
-        {context => 
-          <Component 
-            {...props as P} 
+        {context =>
+          <Component
+            {...props as P}
             {...context}
           />
         }

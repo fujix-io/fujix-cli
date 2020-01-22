@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 import AppContext, { Args } from './AppContext';
 
 interface AppProviderProps {
   command: string;
   args: string[];
-  flags: Args
+  flags: Args;
 }
 
 const AppProvider: React.FC<AppProviderProps> = ({ children, command, args, flags }) => {
@@ -13,11 +13,11 @@ const AppProvider: React.FC<AppProviderProps> = ({ children, command, args, flag
     <AppContext.Provider value={{
       command,
       args,
-      flags
+      flags,
     }}>
       {children}
     </AppContext.Provider>
-  )
-}
+  );
+};
 
-export default AppProvider
+export default AppProvider;

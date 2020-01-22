@@ -3,5 +3,5 @@ export default {
   danger: '#D87B5D',
   warning: '#E49837',
   success: '#84B4AE',
-  gray: '#536A7E'
-}
+  gray: '#536A7E',
+};

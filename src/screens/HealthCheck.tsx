@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import fs from 'fs';
 
-import { Box, Color } from 'ink'
+import { Box, Color } from 'ink';
 import Spinner from 'ink-spinner';
 
 import checkIntrospectionQuery from '../helpers/check-introspection-query';
@@ -18,23 +18,23 @@ const HealthCheck = () => {
 
   useEffect(() => {
     const credentials = JSON.parse(fs.readFileSync(`${ROOT_DIR()}/fujix-credentials.json`, { encoding: 'utf-8' }));
-    
+
     setCredentials(credentials);
-  }, [])
+  }, []);
 
   const checkEndpoint = async () => {
     const isGenerate = args[0] === 'generate' || args[0] === 'init';
 
     const now = Date.now();
-    const result = await checkIntrospectionQuery(credentials)
+    const result = await checkIntrospectionQuery(credentials);
     if (!result) {
       setChecking(false);
       router.setRoute('message', {
         params: {
           text: <Box paddingLeft={1}>
             <Color hex={colors.danger}>🌑 {credentials.url} does not response or token is invalid</Color>
-          </Box>
-        }
+          </Box>,
+        },
       });
     } else {
       if (isGenerate) {
@@ -47,16 +47,16 @@ const HealthCheck = () => {
             text: <Box paddingLeft={1} flexDirection="column">
               <Box marginBottom={1}><Color hex={colors.white}>🚀 {credentials.url} is running up!</Color></Box>
               <Box><Color hex={colors.success}>🌎 Ping: {diff}ms </Color></Box>
-            </Box>
-          }
+            </Box>,
+          },
         });
       }
     }
-  }
+  };
 
   useEffect(() => {
     if (credentials.token && credentials.url) {
-      checkEndpoint()
+      checkEndpoint();
     }
   }, [credentials]);
 
@@ -65,10 +65,10 @@ const HealthCheck = () => {
       <Box padding={1}>
         <Color hex={colors.white}><Spinner type="moon"/></Color> Checking {credentials.url}
       </Box>
-    )
-  } else {
-    return null
+    );
   }
-}
 
-export default HealthCheck
+  return null;
+};
+
+export default HealthCheck;

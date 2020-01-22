@@ -8,10 +8,10 @@ const clearGenerated = async (options: MethodOptions) => {
     await new Promise((resolve, reject) => rimraf(GENERATED_DIR_PATH(options.context.flags['--out']), (err) => {
       if (err) reject(err);
       resolve();
-    }))
+    }));
   }
 
   return true;
-}
+};
 
 export default clearGenerated;

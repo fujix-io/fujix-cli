@@ -10,8 +10,8 @@ const generateTypings = async (options: MethodOptions): Promise<boolean> => {
           [options.url]: {
             headers: {
               Authorization: options.token,
-            }
-          }
+            },
+          },
         },
         silent: true,
         generates: {
@@ -20,7 +20,7 @@ const generateTypings = async (options: MethodOptions): Promise<boolean> => {
           },
         },
       },
-      true
+      true,
     );
   } catch (err) {
     console.error(err);
@@ -28,6 +28,6 @@ const generateTypings = async (options: MethodOptions): Promise<boolean> => {
   }
 
   return true;
-}
+};
 
 export default generateTypings;
