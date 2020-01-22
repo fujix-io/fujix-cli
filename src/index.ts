@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 import Arg from 'arg';
-import { execSync, spawnSync } from 'child_process';
 
 import generate from './commands/generate';
 import login from './commands/login';
@@ -16,7 +15,7 @@ const main = async (): Promise<any> => {
     '--language': String,
     '-o': '--out',
     '-h': '--help',
-    '-lang': '--language'
+    '-lang': '--language',
   }, { argv: process.argv.slice(2) });
 
   const {
@@ -38,6 +37,6 @@ const main = async (): Promise<any> => {
     case 'ping': return ping(rawArgs._, args);
     case 'init': return init(rawArgs._, args);
   }
-}
+};
 
-main()
+main();

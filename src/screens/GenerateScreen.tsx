@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react'
-import { Box, Color } from 'ink'
+import React, { useEffect, useState } from 'react';
+import { Box, Color } from 'ink';
+
 const Divider = require('ink-divider');
 
 import generatorSteps, { StepNames, Step, GENERATED_DIR_PATH } from '../generator';
@@ -18,33 +19,35 @@ export interface StepState {
 
 type StepStateMap = {
   [key in StepNames]: StepState
-}
+};
 
 const GenerateScreen = () => {
-  const [steps, setSteps] = useState<StepStateMap>(generatorSteps.reduce((r, { name, label }) => ({...r, [name]: { status: 'pending', label }}), {}) as StepStateMap);
+  const [steps, setSteps] = useState<StepStateMap>(generatorSteps.reduce((r, { name, label }) => ({
+    ...r, [name]: { label, status: 'pending' },
+  }), {}) as StepStateMap);
   const [step, setStep] = useState('');
   const [failedStep, setFailedStep] = useState<Step>();
   const context = useApp();
   const { FUJIX_ROOT_TOKEN: token, FUJIX_PROJECT_URL: url } = process.env;
 
   const setStepStatus = (name: StepNames, status: StepStatus, executionTime?: number, message?: string) => {
-    const additionalFields: Omit<StepState, 'status' | 'label'> = {}
+    const additionalFields: Omit<StepState, 'status' | 'label'> = {};
 
     if (message) additionalFields.message = message;
     if (executionTime) additionalFields.executionTime = executionTime;
 
-    setSteps((steps) => ({ ...steps, [name]: { ...steps[name], status, ...additionalFields } }));
-  }
+    setSteps(steps => ({ ...steps, [name]: { ...steps[name], status, ...additionalFields } }));
+  };
 
   const generate = async () => {
     if (token && url) {
       for (const step of (generatorSteps as Step[])) {
         const { name } = step;
-        setStep(step.name)
-        setStepStatus(name, 'loading')
+        setStep(step.name);
+        setStepStatus(name, 'loading');
         const now = Date.now();
         try {
-          const result = await step.method({ token, url, context })
+          const result = await step.method({ token, url, context });
           const diff = Date.now() - now;
           if (result) {
             setStepStatus(name, 'success', diff);
@@ -58,23 +61,25 @@ const GenerateScreen = () => {
           break;
         }
       }
-      setStep('')
+      setStep('');
     }
-  }
+  };
 
   useEffect(() => {
     generate();
-  }, [])
+  }, []);
 
-  const succeededSteps = Object.keys(steps).filter((key: StepNames) => steps[key].status === 'success').length
-  const totalTime = Object.keys(steps).reduce((r: number, key: StepNames) => r += steps[key].executionTime || 0, 0)
+  const succeededSteps = Object.keys(steps).filter((key: StepNames) => steps[key].status === 'success').length;
+  const totalTime = Object.keys(steps).reduce((r: number, key: StepNames) => r + (steps[key].executionTime || 0), 0);
 
-  const dividerTitle = failedStep ? 'Failed' : 'Succeeded'
+  const dividerTitle = failedStep ? 'Failed' : 'Succeeded';
 
   const getResultLabel = () => succeededSteps === generatorSteps.length
     ? <Box paddingTop={1} paddingBottom={1} flexDirection="column">
         <Box paddingLeft={1} flexDirection="column">
-          <Box marginBottom={1}><Color hex={colors.success}>🚀  FujiX client is generated successfully in {GENERATED_DIR_PATH(context.flags['--out'])}</Color></Box>
+          <Box marginBottom={1}>
+            <Color hex={colors.success}>🚀  FujiX client is generated successfully in {GENERATED_DIR_PATH(context.flags['--out'])}</Color>
+          </Box>
           <Color hex={colors.success}>🕒  Total time: {totalTime}ms</Color>
         </Box>
       </Box>
@@ -85,7 +90,7 @@ const GenerateScreen = () => {
           <Color hex={colors.danger}>📝  With message: </Color><Color hex={colors.success}>{steps[failedStep.name].message} </Color>
         </Box>
       </Box>
-      || null
+      || null;
 
   return (
     <Box paddingTop={1} flexDirection="column">
@@ -95,13 +100,13 @@ const GenerateScreen = () => {
         {Object.keys(steps).map((key: StepNames) => {
           const currentStep = steps[key];
           const isActive = step === key;
-          
-          return <GeneratorStepItem {...currentStep}  key={key} isActive={isActive} />
+
+          return <GeneratorStepItem {...currentStep}  key={key} isActive={isActive} />;
         })}
       </Box>
       {getResultLabel() && <Box flexDirection="column"> <Divider title={dividerTitle} /> {getResultLabel()}</Box>}
     </Box>
-  )
-}
+  );
+};
 
-export default GenerateScreen
+export default GenerateScreen;

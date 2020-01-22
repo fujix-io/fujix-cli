@@ -1,7 +1,5 @@
-import React from 'react'
-import { AppProps, Box, Color } from 'ink';
-
-const Divider = require('ink-divider');
+import React from 'react';
+import { AppProps, Box } from 'ink';
 
 import ProjectForm from './screens/ProjectFormScreen';
 import GenerateScreen from './screens/GenerateScreen';
@@ -13,49 +11,49 @@ import AppProvider from './components/context/AppProvider';
 import { Route, Router } from './components/router/Router';
 import { Args } from './components/context/AppContext';
 
+const Divider = require('ink-divider');
+
 interface CLIAppProps extends AppProps {
   command: string;
-  args: string[]
-  flags: Args
+  args: string[];
+  flags: Args;
 }
 
 const routes = [
   {
     component: ProjectForm,
-    routeKey: 'login'
+    routeKey: 'login',
   },
   {
     component: HealthCheck,
-    routeKey: 'ping'
+    routeKey: 'ping',
   },
   {
     component: HelpScreen,
-    routeKey: 'help'
+    routeKey: 'help',
   },
   {
     component: GenerateScreen,
-    routeKey: 'generate'
+    routeKey: 'generate',
   },
   {
     component: MessageScreen,
-    routeKey: 'message'
+    routeKey: 'message',
   },
 ];
 
 const App: React.FC<CLIAppProps> = ({ command, args, exit, flags }) => {
-  
   if (!command) {
-    exit(); return null; 
+    exit();
+    return null;
   }
 
-  const rootCommand = args[0] 
+  const rootCommand = args[0];
 
   return <Box flexDirection="column">
-      {/* <Box padding={1}> */}
       <Divider
         title={`FujiX - ${rootCommand.charAt(0).toUpperCase() + rootCommand.slice(1)}`}
       />
-      {/* </Box> */}
       <AppProvider flags={flags} args={args} command={command}>
         <Router defaultRoute={command}>
           {routes.map(route => (
@@ -64,7 +62,7 @@ const App: React.FC<CLIAppProps> = ({ command, args, exit, flags }) => {
         </Router>
       </AppProvider>
       <Divider />
-    </Box>
-}
+    </Box>;
+};
 
 export default App;

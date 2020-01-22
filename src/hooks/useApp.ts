@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import AppContext, { IAppContext } from "../components/context/AppContext";
+import { useContext } from 'react';
+import AppContext, { AppContextType } from '../components/context/AppContext';
 
-const useApp = (): IAppContext => {
+const useApp = (): AppContextType => {
   const ctx = useContext(AppContext);
-  
+
   return ctx;
-}
+};
 
 export default useApp;
