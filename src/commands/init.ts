@@ -2,10 +2,11 @@ import { existsSync, mkdirSync, readFileSync } from 'fs';
 
 import { Args } from '../components/context/AppContext';
 import initInk from '../components/common/init-ink';
-import { GENERATED_DIR_PATH, ROOT_DIR } from '../generator';
+import { ROOT_DIR } from '../generator';
 
 const init = (args: string[], flags: Args) => {
   const targetDir = args[1];
+  if (!targetDir) return initInk('message', ['Init', '🗂 Directory name is empty'], flags);
   if (existsSync(targetDir)) return initInk('message', ['Init', '🔥 Directory already exists'], flags);
 
   mkdirSync(`${process.cwd()}/${targetDir}`);

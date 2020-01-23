@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Text, Color, useInput } from 'ink';
 import Spinner from 'ink-spinner';
-import { writeFileSync } from 'fs';
+import { writeFileSync, existsSync } from 'fs';
 
 import TextInput from '../components/common/TextInput';
 import withAppContext from '../components/context/withAppContext';
@@ -14,7 +14,7 @@ import useRouter from '../hooks/useRouter';
 import useApp from '../hooks/useApp';
 
 import colors from '../colors';
-import { ROOT_DIR } from '../generator';
+import { ROOT_DIR, GENERATED_DIR_PATH } from '../generator';
 
 type InputNames = 'url' | 'token';
 
@@ -43,7 +43,7 @@ const inputs: InputSingature[] = [
 
 const ProjectForm: React.FC<AppContextType> = () => {
   const router = useRouter();
-  const { args } = useApp();
+  const { args, flags } = useApp();
 
   const [authChecking, setAuthChecking] = React.useState(false);
   const [values, setValues] = React.useState<Values>({ url: '', token: '' });
@@ -83,7 +83,15 @@ const ProjectForm: React.FC<AppContextType> = () => {
       }
 
       writeFileSync(`${ROOT_DIR()}/fujix-credentials.json`, JSON.stringify(credentials));
+      
+      if (existsSync(`${GENERATED_DIR_PATH(flags['--out'])}/.env`)) {
+        const environmentFile = `
+FUJIX_ROOT_TOKEN=${credentials.token}
+FUJIX_PROJECT_URL=${credentials.url}
+        `;
 
+        writeFileSync(`${GENERATED_DIR_PATH(flags['--out'])}/.env`, environmentFile, { encoding: 'utf-8' });
+      }
       setAuthChecking(true);
       const result = await checkIntrospectionQuery(credentials);
       setAuthChecking(false);
