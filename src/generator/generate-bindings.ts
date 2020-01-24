@@ -21,43 +21,43 @@ const filenames = {
 };
 
 const bindingClientCode = {
-  typescript: `import { HttpLink } from 'apollo-link-http'
-import { makeRemoteExecutableSchema } from 'graphql-tools'
-import fs from 'fs'
-import { config } from 'dotenv'
+  typescript: `import { HttpLink } from 'apollo-link-http';
+import { makeRemoteExecutableSchema } from 'graphql-tools';
+import fs from 'fs';
+import { config } from 'dotenv';
 
-import Binding from './binding'
+import { Binding } from './binding';
 
 const fetch = require('node-fetch');
 
-config();
+config({ path: \`\${__dirname}/.env\` });
 
 export class FujiXLink extends HttpLink {
   constructor(token?: string) {
     if (!token && !process.env.FUJIX_ROOT_TOKEN) {
       throw new Error(
         'No Fujix token provided.',
-      )
+      );
     }
 
     super({
-      uri: process.env.FUJIX_PROJECT_URL,
-      headers: { Authorization: token || process.env.FUJIX_ROOT_TOKEN},
       fetch,
-    })
+      uri: process.env.FUJIX_PROJECT_URL,
+      headers: { Authorization: token || process.env.FUJIX_ROOT_TOKEN },
+    });
   }
 }
 
 export default class FujiXBinding extends Binding {
   constructor(token?: string) {
     const schema = makeRemoteExecutableSchema({
-      schema: fs.readFileSync(__dirname + '/schema.graphql', 'utf-8'),
+      schema: fs.readFileSync(\`\${__dirname}/schema.graphql\`, 'utf-8'),
       link: new FujiXLink(token),
-    })
-    super({ schema })
+    });
+    super({ schema });
   }
 }
-  `,
+`,
   javascript: `import fetch from 'node-fetch'
 import { HttpLink } from 'apollo-link-http'
 import { makeRemoteExecutableSchema } from 'graphql-tools'
@@ -66,7 +66,7 @@ import { config } from 'dotenv'
 
 import { Binding } from './binding'
 
-config();
+config({ path: \`${__dirname}/.env\` });
 
 export class FujiXLink extends HttpLink {
   constructor(token) {
@@ -77,9 +77,9 @@ export class FujiXLink extends HttpLink {
     }
 
     super({
+      fetch,
       uri: process.env.FUJIX_PROJECT_URL,
       headers: { Authorization: token || process.env.FUJIX_ROOT_TOKEN},
-      fetch,
     })
   }
 }
@@ -87,7 +87,7 @@ export class FujiXLink extends HttpLink {
 export default class FujiXBinding extends Binding {
   constructor(token) {
     const schema = makeRemoteExecutableSchema({
-      schema: fs.readFileSync(__dirname + '/schema.graphql', 'utf-8'),
+      schema: fs.readFileSync(\`\${__dirname}/schema.graphql\`, 'utf-8'),
       link: new FujiXLink(token),
     })
     super({ schema })

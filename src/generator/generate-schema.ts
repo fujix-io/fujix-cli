@@ -8,7 +8,7 @@ import { GENERATED_DIR_PATH, MethodOptions } from './index';
 const fetch = require('node-fetch');
 
 export interface GenerateSchemaOptions {
-  path: string,
+  path: string;
 }
 
 const filenames = {
