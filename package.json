@@ -1,5 +1,5 @@
 {
- "name": "@fujix/cli",
+ "name": "@fujix-io/cli",
  "version": "0.0.1",
  "bin": {
   "fujix": "./lib/index.js"
@@ -7,11 +7,12 @@
  "types": "./lib/index.d.ts",
  "author": "Alexey Maligon (fania@milkandcartoons.com)",
  "license": "MIT",
+ "publishConfig": { "registry": "https://npm.pkg.github.com/" },
  "engines": {
   "node": ">=8"
  },
  "files": [
-  "./lib/index.js"
+  "./lib/*"
  ],
  "scripts": {
   "patch": "yarn run build && npm version patch && npm publish",
