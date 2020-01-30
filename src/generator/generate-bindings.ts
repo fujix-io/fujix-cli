@@ -124,11 +124,7 @@ const generateBindings = async (options: MethodOptions) => {
   const code = generator.render();
 
   writeFileSync(outputBindingPath, code, { encoding: 'utf-8' });
-  writeFileSync(`
-    ${GENERATED_DIR_PATH(options.context.flags['--out'])}/${filenames[lang].client}`,
-    bindingClientCode[lang],
-    { encoding: 'utf-8' },
-  );
+  writeFileSync(`${GENERATED_DIR_PATH(options.context.flags['--out'])}/${filenames[lang].client}`, bindingClientCode[lang], { encoding: 'utf-8' });
 
   return true;
 };
