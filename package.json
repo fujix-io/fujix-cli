@@ -14,7 +14,7 @@
   "node": ">=8"
  },
  "files": [
-  "./lib/**/*"
+  "/lib"
  ],
  "scripts": {
   "patch": "yarn run build && npm version patch && npm publish",
