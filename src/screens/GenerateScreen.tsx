@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Color } from 'ink';
 
-const Divider = require('ink-divider');
-
 import generatorSteps, { StepNames, Step, GENERATED_DIR_PATH } from '../generator';
 import GeneratorStepItem from '../components/generate/GeneratorStepItem';
 import colors from '../colors';
 import useApp from '../hooks/useApp';
+
+const Divider = require('ink-divider');
 
 export type StepStatus = 'pending' | 'loading' | 'success' | 'failed';
 

@@ -10,6 +10,7 @@
     "moduleResolution": "node",              /* Generates corresponding '.d.ts' file. */
     "rootDir": "src",
     "outDir": "lib",
+    "typeRoots": ["node_modules/@types"],
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "strictNullChecks": true,                        /* Redirect output structure to the directory. */

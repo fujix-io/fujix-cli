@@ -83,7 +83,7 @@ const ProjectForm: React.FC<AppContextType> = () => {
       }
 
       writeFileSync(`${ROOT_DIR()}/fujix-credentials.json`, JSON.stringify(credentials));
-      
+
       if (existsSync(`${GENERATED_DIR_PATH(flags['--out'])}/.env`)) {
         const environmentFile = `
 FUJIX_ROOT_TOKEN=${credentials.token}
