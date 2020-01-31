@@ -82,16 +82,19 @@ const ProjectForm: React.FC<AppContextType> = () => {
         router.setRoute('message', { params: { text: <Box><Color red>🤷 Url is invalid</Color> </Box> } });
       }
 
-      writeFileSync(`${ROOT_DIR()}/fujix-credentials.json`, JSON.stringify(credentials));
+      writeFileSync(`${ROOT_DIR()}/fujix-credentials.json`, `{
+"token": "${credentials.token}",
+"url": "${credentials.url}",
+}`);
 
-      if (existsSync(`${GENERATED_DIR_PATH(flags['--out'])}/.env`)) {
-        const environmentFile = `
-FUJIX_ROOT_TOKEN=${credentials.token}
-FUJIX_PROJECT_URL=${credentials.url}
-        `;
+//       if (existsSync(`${GENERATED_DIR_PATH(flags['--out'])}/.env`)) {
+//         const environmentFile = `
+// FUJIX_ROOT_TOKEN=${credentials.token}
+// FUJIX_PROJECT_URL=${credentials.url}
+//         `;
 
-        writeFileSync(`${GENERATED_DIR_PATH(flags['--out'])}/.env`, environmentFile, { encoding: 'utf-8' });
-      }
+//         writeFileSync(`${GENERATED_DIR_PATH(flags['--out'])}/.env`, environmentFile, { encoding: 'utf-8' });
+//       }
       setAuthChecking(true);
       const result = await checkIntrospectionQuery(credentials);
       setAuthChecking(false);

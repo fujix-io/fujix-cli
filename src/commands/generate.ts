@@ -17,7 +17,7 @@ const generate = (args: string[], flags: Args) => {
     process.env.FUJIX_PROJECT_URL = credentials.url;
   }
 
-  return initInk('ping', args, flags);
+  return initInk('confirm', args, flags);
 };
 
 export default generate;

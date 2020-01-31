@@ -1,5 +1,5 @@
 import generateSchema from './generate-schema';
-import generateTypings from './generate-typings';
+// import generateTypings from './generate-typings';
 import installPackages from './install-packages';
 import clearGenerated from './clear-generated';
 import configureEnvironment from './configure-environment';

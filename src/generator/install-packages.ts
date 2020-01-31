@@ -7,7 +7,6 @@ export const packages = [
   'graphql-binding@2.5.2',
   'node-fetch',
   'apollo-link-http',
-  'dotenv',
 ];
 
 const installPackages = async (options: MethodOptions) => {

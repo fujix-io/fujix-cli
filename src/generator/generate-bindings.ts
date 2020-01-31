@@ -24,17 +24,15 @@ const bindingClientCode = {
   typescript: `import { HttpLink } from 'apollo-link-http';
 import { makeRemoteExecutableSchema } from 'graphql-tools';
 import fs from 'fs';
-import { config } from 'dotenv';
 
 import { Binding } from './binding';
 
 const fetch = require('node-fetch');
 
-config({ path: \`\${__dirname}/.env\` });
-
 export class FujiXLink extends HttpLink {
   constructor(token?: string) {
-    if (!token && !process.env.FUJIX_ROOT_TOKEN) {
+    const credentials = JSON.parse(fs.readFileSync('../fujix-credentials.json', { encoding: 'utf-8' }));
+    if (!token && !credentials.token) {
       throw new Error(
         'No Fujix token provided.',
       );
@@ -42,8 +40,8 @@ export class FujiXLink extends HttpLink {
 
     super({
       fetch,
-      uri: process.env.FUJIX_PROJECT_URL,
-      headers: { Authorization: token || process.env.FUJIX_ROOT_TOKEN },
+      uri: credentials.url,
+      headers: { Authorization: token || credentials.token },
     });
   }
 }
@@ -62,25 +60,23 @@ export default class FujiXBinding extends Binding {
 import { HttpLink } from 'apollo-link-http'
 import { makeRemoteExecutableSchema } from 'graphql-tools'
 import fs from 'fs'
-import { config } from 'dotenv'
 
 import { Binding } from './binding'
 
-config({ path: \`${__dirname}/.env\` });
-
 export class FujiXLink extends HttpLink {
   constructor(token) {
-    if (!token && !process.env.FUJIX_ROOT_TOKEN) {
+    const credentials = JSON.parse(fs.readFileSync('../fujix-credentials.json', { encoding: 'utf-8' }));
+    if (!token && !credentials.token) {
       throw new Error(
         'No Fujix token provided.',
-      )
+      );
     }
 
     super({
       fetch,
-      uri: process.env.FUJIX_PROJECT_URL,
-      headers: { Authorization: token || process.env.FUJIX_ROOT_TOKEN},
-    })
+      uri: credentials.url,
+      headers: { Authorization: token || credentials.token },
+    });
   }
 }
 
