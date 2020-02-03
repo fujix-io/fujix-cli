@@ -15,9 +15,9 @@ Used for initializing projects with required dependencies. It using generate und
 Used for generating bindings code by credentials from fujix-credentials.json (also install required packages)
 
 ### flags:
-  - #### `--language <typescript|javascript>` - used for selecting language of generated code
-  - #### `--out <folder_name>` - used for specifying generated folder name
-  - #### `--npm` - used for selecting package manager which using by generation process
+  - `--language <typescript|javascript>` - used for selecting language of generated code
+  - `--out <folder_name>` - used for specifying generated folder name
+  - `--npm` - used for selecting package manager which using by generation process
 
 
 ### `ping`
