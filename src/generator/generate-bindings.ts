@@ -55,6 +55,7 @@ export default class FujiXBinding extends Binding {
     super({ schema });
   }
 }
+
 `,
   javascript: `import fetch from 'node-fetch';
 import { HttpLink } from 'apollo-link-http';
@@ -88,7 +89,8 @@ export default class FujiXBinding extends Binding {
     });
     super({ schema });
   }
-}`,
+}
+`,
 };
 
 const generateBindings = async (options: MethodOptions) => {
