@@ -56,12 +56,12 @@ export default class FujiXBinding extends Binding {
   }
 }
 `,
-  javascript: `import fetch from 'node-fetch'
-import { HttpLink } from 'apollo-link-http'
-import { makeRemoteExecutableSchema } from 'graphql-tools'
-import fs from 'fs'
+  javascript: `import fetch from 'node-fetch';
+import { HttpLink } from 'apollo-link-http';
+import { makeRemoteExecutableSchema } from 'graphql-tools';
+import fs from 'fs';
 
-import { Binding } from './binding'
+import { Binding } from './binding';
 
 export class FujiXLink extends HttpLink {
   constructor(token) {
@@ -85,8 +85,8 @@ export default class FujiXBinding extends Binding {
     const schema = makeRemoteExecutableSchema({
       schema: fs.readFileSync(\`\${__dirname}/schema.graphql\`, 'utf-8'),
       link: new FujiXLink(token),
-    })
-    super({ schema })
+    });
+    super({ schema });
   }
 }`,
 };

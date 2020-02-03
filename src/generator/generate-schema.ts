@@ -21,26 +21,26 @@ const filenames = {
 };
 
 const executableSchemaDefintion = {
-  typescript: `import * as fs from 'fs'
-import { makeExecutableSchema } from 'graphql-tools'
-import { GraphQLSchema } from 'graphql'
+  typescript: `import * as fs from 'fs';
+import { makeExecutableSchema } from 'graphql-tools';
+import { GraphQLSchema } from 'graphql';
 
 const schema: GraphQLSchema = makeExecutableSchema({
   typeDefs: fs.readFileSync(\`\${__dirname}/schema.graphql\`, 'utf-8'),
-})
+});
 
-export default schema
+export default schema;
 `,
-  javascript: `import fs from 'fs'
-import { makeExecutableSchema } from 'graphql-tools'
-import { GraphQLSchema } from 'graphql'
+  javascript: `import fs from 'fs';
+import { makeExecutableSchema } from 'graphql-tools';
+import { GraphQLSchema } from 'graphql';
 
 const schema = makeExecutableSchema({
   typeDefs: fs.readFileSync(\`\${__dirname}/schema.graphql\`, 'utf-8'),
-})
+});
 
-export default schema
-  `,
+export default schema;
+`,
 };
 
 const generateSchema = async ({ url: uri, token, context }: MethodOptions): Promise<boolean> => {
