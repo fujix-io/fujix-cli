@@ -1,47 +1,73 @@
-import React from 'react'
-
-import ProjectForm from './screens/ProjectForm';
+import React from 'react';
 import { AppProps, Box } from 'ink';
-import { Route, Router } from './components/router/Router';
+
+import ProjectForm from './screens/ProjectFormScreen';
 import GenerateScreen from './screens/GenerateScreen';
-import AppProvider from './components/context/AppProvider';
 import MessageScreen from './screens/MessageScreen';
+import HelpScreen from './screens/HelpScreen';
+import ConfirmScreen from './screens/ConfirmScreen';
+import HealthCheck from './screens/HealthCheck';
+
+import AppProvider from './components/context/AppProvider';
+import { Route, Router } from './components/router/Router';
+import { Args } from './components/context/AppContext';
+
+const Divider = require('ink-divider');
 
 interface CLIAppProps extends AppProps {
   command: string;
-  args: string[]
+  args: string[];
+  flags: Args;
 }
 
 const routes = [
   {
     component: ProjectForm,
-    routeKey: 'login'
+    routeKey: 'login',
+  },
+  {
+    component: HealthCheck,
+    routeKey: 'ping',
+  },
+  {
+    component: ConfirmScreen,
+    routeKey: 'confirm',
+  },
+  {
+    component: HelpScreen,
+    routeKey: 'help',
   },
   {
     component: GenerateScreen,
-    routeKey: 'generate'
+    routeKey: 'generate',
   },
   {
     component: MessageScreen,
-    routeKey: 'message'
+    routeKey: 'message',
   },
 ];
 
-const App: React.FC<CLIAppProps> = ({ command, args, exit }) => {
-  
+const App: React.FC<CLIAppProps> = ({ command, args, exit, flags }) => {
   if (!command) {
-    exit(); return null; 
+    exit();
+    return null;
   }
 
+  const rootCommand = args[0];
+
   return <Box flexDirection="column">
-      <AppProvider args={args} command={command}>
-        <Router defaultRoute="login">
+      <Divider
+        title={`FujiX - ${rootCommand.charAt(0).toUpperCase() + rootCommand.slice(1)}`}
+      />
+      <AppProvider flags={flags} args={args} command={command}>
+        <Router defaultRoute={command}>
           {routes.map(route => (
             <Route key={route.routeKey} component={<route.component />} path={route.routeKey} />
           ))}
         </Router>
       </AppProvider>
-    </Box>
-}
+      <Divider />
+    </Box>;
+};
 
 export default App;

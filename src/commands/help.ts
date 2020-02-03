@@ -1,8 +1,8 @@
 import { Args } from '../components/context/AppContext';
 import initInk from '../components/common/init-ink';
 
-const login = (args: string[], flags: Args) => {
-  return initInk('login', args, flags);
+const help = (args: string[], flags: Args) => {
+  return initInk('help', args, flags);
 };
 
-export default login;
+export default help;
