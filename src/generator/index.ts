@@ -20,7 +20,7 @@ const steps = [
   },
   {
     name: 'installPackages',
-    label: '📦 Installing necessary packages',
+    label: '📦 Installing required packages',
     method: installPackages,
   },
   {

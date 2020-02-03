@@ -48,14 +48,14 @@ const helps: HelpSection[] = [
     commands: [
       {
         command: <React.Fragment>
-          <Color hex={colors.success}>--out / -o </Color>
+          <Color hex={colors.success}>--out</Color>
           <Color hex={colors.green}>{'<folder_name>'}</Color>
         </React.Fragment>,
         description: 'Specify generated folder name',
       },
       {
         command: <React.Fragment>
-          <Color hex={colors.success}>--language / -lang </Color>
+          <Color hex={colors.success}>--language </Color>
           <Color hex={colors.green}>{'<typescript|javascript>'}</Color>
         </React.Fragment>,
         description: 'Specify language for generated code',
