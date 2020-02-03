@@ -1,6 +1,6 @@
 # FujiX CLI
 ## How to use
-#
+
 ### Install CLI
 ```
 npm install -g @fujix/cli
