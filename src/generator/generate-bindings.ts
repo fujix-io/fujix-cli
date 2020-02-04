@@ -31,7 +31,7 @@ const fetch = require('node-fetch');
 
 export class FujiXLink extends HttpLink {
   constructor(token?: string) {
-    const credentials = JSON.parse(fs.readFileSync('../fujix-credentials.json', { encoding: 'utf-8' }));
+    const credentials = JSON.parse(fs.readFileSync(\`${__dirname}/../fujix-credentials.json\`, { encoding: 'utf-8' }));
     if (!token && !credentials.token) {
       throw new Error(
         'No Fujix token provided.',
@@ -66,7 +66,7 @@ import { Binding } from './binding';
 
 export class FujiXLink extends HttpLink {
   constructor(token) {
-    const credentials = JSON.parse(fs.readFileSync('../fujix-credentials.json', { encoding: 'utf-8' }));
+    const credentials = JSON.parse(fs.readFileSync(\`${__dirname}/../fujix-credentials.json\`, { encoding: 'utf-8' }));
     if (!token && !credentials.token) {
       throw new Error(
         'No Fujix token provided.',
