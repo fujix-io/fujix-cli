@@ -3,7 +3,6 @@ import { Color, Box, AppContext, useInput } from 'ink';
 
 import useRouter from '../hooks/useRouter';
 import colors from '../colors';
-import useApp from '../hooks/useApp';
 import { packages } from '../generator/install-packages';
 
 const ConfirmScreen: React.FC = () => {

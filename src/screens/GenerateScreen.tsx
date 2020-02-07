@@ -75,7 +75,7 @@ const GenerateScreen = () => {
   const dividerTitle = failedStep ? 'Failed' : 'Succeeded';
 
   const getResultLabel = () => succeededSteps === generatorSteps.length
-    ? <Box paddingTop={1} paddingBottom={1} flexDirection="column">
+    ? <Box paddingBottom={1} flexDirection="column">
         <Box paddingLeft={1} flexDirection="column">
           <Box marginBottom={1}>
             <Color hex={colors.success}>🚀  FujiX client is generated successfully in {GENERATED_DIR_PATH(context.flags['--out'])}</Color>
@@ -95,8 +95,8 @@ const GenerateScreen = () => {
   return (
     <Box paddingTop={1} flexDirection="column">
       <Box paddingLeft={1} flexDirection="column">
-      <Box marginBottom={1}><Color hex={colors.success}>🗂  Generating into: {GENERATED_DIR_PATH(context.flags['--out'])}</Color></Box>
-      <Box marginBottom={1}><Color hex={colors.white}>⚙️  Succeeded steps: {succeededSteps}/{generatorSteps.length}</Color></Box>
+        <Box marginBottom={1}><Color hex={colors.success}>🗂  Generating into: {GENERATED_DIR_PATH(context.flags['--out'])}</Color></Box>
+        <Box marginBottom={1}><Color hex={colors.white}>⚙️  Succeeded steps: {succeededSteps}/{generatorSteps.length}</Color></Box>
         {Object.keys(steps).map((key: StepNames) => {
           const currentStep = steps[key];
           const isActive = step === key;

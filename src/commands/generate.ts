@@ -3,6 +3,7 @@ import fs from 'fs';
 import initInk from '../components/common/init-ink';
 import { Args } from '../components/context/AppContext';
 import { ROOT_DIR } from '../generator';
+import { isInstallingExist } from '../generator';
 
 const generate = (args: string[], flags: Args) => {
   const credentialsExists = fs.existsSync(`${ROOT_DIR()}/fujix-credentials.json`);
@@ -17,7 +18,12 @@ const generate = (args: string[], flags: Args) => {
     process.env.FUJIX_PROJECT_URL = credentials.url;
   }
 
-  return initInk('confirm', args, flags);
+  
+  if (isInstallingExist) {
+    return initInk('confirm', args, flags);
+  } else {
+    return initInk('ping', args, flags);
+  }
 };
 
 export default generate;

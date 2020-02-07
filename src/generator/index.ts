@@ -18,21 +18,21 @@ const steps = [
     label: '🗑  Clearing generated dir',
     method: clearGenerated,
   },
-  {
-    name: 'installPackages',
-    label: '📦 Installing required packages',
-    method: installPackages,
-  },
-  {
-    name: 'configureEnvironment',
-    label: '🔐 Configure FujiX environment',
-    method: configureEnvironment,
-  },
-  {
-    name: 'generateSchema',
-    label: '📃 Generating GraphQL Schema',
-    method: generateSchema,
-  },
+  // {
+  //   name: 'installPackages',
+  //   label: '📦 Installing required packages',
+  //   method: installPackages,
+  // },
+  // {
+  //   name: 'configureEnvironment',
+  //   label: '🔐 Configure FujiX environment',
+  //   method: configureEnvironment,
+  // },
+  // {
+  //   name: 'generateSchema',
+  //   label: '📃 Generating GraphQL Schema',
+  //   method: generateSchema,
+  // },
   // {
   //   name: 'generateTypings',
   //   label: '📐 Generating Typescript types',
@@ -44,6 +44,8 @@ const steps = [
     method: generateBindings,
   },
 ];
+
+export const isInstallingExist = steps.find(({ name }) => name === 'installPackages');
 
 export interface MethodOptions extends Credentials {
   context: AppContextType;

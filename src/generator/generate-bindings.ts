@@ -5,6 +5,8 @@ import { resolve } from 'path';
 import { buildSchema } from 'graphql';
 import { TypescriptGenerator, Generator } from 'graphql-binding';
 
+import { generateClient } from '@fujix/client';
+
 import { GENERATED_DIR_PATH, MethodOptions } from '.';
 
 const filenames = {
@@ -94,35 +96,44 @@ export default class FujiXBinding extends Binding {
 };
 
 const generateBindings = async (options: MethodOptions) => {
-  const schemaPath = `${GENERATED_DIR_PATH(options.context.flags['--out'])}/schema.graphql`;
-  const lang: keyof typeof bindingClientCode = options.context.flags['--language'];
-  const inputSchemaPath = resolve(`${GENERATED_DIR_PATH(options.context.flags['--out'])}/${filenames[lang].inputSchemaPath}`);
-  const outputBindingPath = resolve(`${GENERATED_DIR_PATH(options.context.flags['--out'])}/${filenames[lang].outputBindingPath}`);
+  // const schemaPath = `${GENERATED_DIR_PATH(options.context.flags['--out'])}/schema.graphql`;
+  // const lang: keyof typeof bindingClientCode = options.context.flags['--language'];
+  // const inputSchemaPath = resolve(`${GENERATED_DIR_PATH(options.context.flags['--out'])}/${filenames[lang].inputSchemaPath}`);
+  // const outputBindingPath = resolve(`${GENERATED_DIR_PATH(options.context.flags['--out'])}/${filenames[lang].outputBindingPath}`);
 
-  if (!existsSync(schemaPath) || !existsSync(inputSchemaPath)) {
-    return false;
-  }
+  // if (!existsSync(schemaPath) || !existsSync(inputSchemaPath)) {
+  //   return false;
+  // }
 
-  if (lang === 'typescript') {
-    tsnode.register();
-  }
+  // if (lang === 'typescript') {
+  //   tsnode.register();
+  // }
 
-  const schemaString = readFileSync(`${GENERATED_DIR_PATH(options.context.flags['--out'])}/schema.graphql`, { encoding: 'utf-8' });
+  // const schemaString = readFileSync(`${GENERATED_DIR_PATH(options.context.flags['--out'])}/schema.graphql`, { encoding: 'utf-8' });
 
-  const schema = buildSchema(schemaString);
-  const args = {
-    schema,
-    inputSchemaPath,
-    outputBindingPath,
-    isDefaultExport: true,
-  };
+  // const schema = buildSchema(schemaString);
+  // const args = {
+  //   schema,
+  //   inputSchemaPath,
+  //   outputBindingPath,
+  //   isDefaultExport: true,
+  // };
 
-  const generator = lang === 'typescript' ? new TypescriptGenerator(args) : new Generator(args);
+  // const generator = lang === 'typescript' ? new TypescriptGenerator(args) : new Generator(args);
 
-  const code = generator.render();
+  // const code = generator.render();
 
-  writeFileSync(outputBindingPath, code, { encoding: 'utf-8' });
-  writeFileSync(`${GENERATED_DIR_PATH(options.context.flags['--out'])}/${filenames[lang].client}`, bindingClientCode[lang], { encoding: 'utf-8' });
+  // writeFileSync(outputBindingPath, code, { encoding: 'utf-8' });
+  // writeFileSync(`${GENERATED_DIR_PATH(options.context.flags['--out'])}/${filenames[lang].client}`, bindingClientCode[lang], { encoding: 'utf-8' });
+
+  const authorization = process.env.FUJIX_ROOT_TOKEN;
+  const url = process.env.FUJIX_PROJECT_URL;
+
+  await generateClient({
+    authorization,
+    url,
+    path: GENERATED_DIR_PATH(options.context.flags['--out'])
+  })
 
   return true;
 };
