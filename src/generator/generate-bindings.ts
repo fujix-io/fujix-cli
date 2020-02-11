@@ -9,7 +9,6 @@ const generateBindings = async (options: MethodOptions) => {
   await generateClient({
     authorization,
     url,
-    fromIntrospection: true,
     path: GENERATED_DIR_PATH(options.context.flags['--out']),
   });
 
