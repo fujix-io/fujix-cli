@@ -48,14 +48,14 @@ const helps: HelpSection[] = [
     commands: [
       {
         command: <React.Fragment>
-          <Color hex={colors.success}>--out/-o</Color>
+          <Color hex={colors.success}>--out/-o </Color>
           <Color hex={colors.green}>{'<folder_name>'}</Color>
         </React.Fragment>,
         description: 'Specify generated folder name',
       },
       {
         command: <React.Fragment>
-          <Color hex={colors.success}>--language/-l</Color>
+          <Color hex={colors.success}>--language/-l </Color>
           <Color hex={colors.green}>{'<typescript|javascript>'}</Color>
         </React.Fragment>,
         description: 'Specify language for generated code',
@@ -64,7 +64,7 @@ const helps: HelpSection[] = [
         command: <React.Fragment>
           <Color hex={colors.success}>--version/-v</Color>
         </React.Fragment>,
-        description: 'Show version of package',
+        description: 'Show versions of Fujix packages',
       },
       {
         command: '--npm',
