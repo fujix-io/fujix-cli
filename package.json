@@ -15,8 +15,8 @@
   "/lib"
  ],
  "scripts": {
-  "alpha": "yarn run build && npm version prerelease --preid=\"alpha\" && npm publish",
-  "beta": "yarn run build && npm version prerelease --preid=\"beta\" && npm publish",
+  "alpha": "yarn run build && npm version prerelease --preid=\"alpha\" && npm publish --tag alpha",
+  "beta": "yarn run build && npm version prerelease --preid=\"beta\" && npm publish --tag beta",
   "patch": "yarn run build && npm version patch && npm publish",
   "minor": "yarn run build && npm version minor && npm publish",
   "major": "yarn run build && npm version major && npm publish",
