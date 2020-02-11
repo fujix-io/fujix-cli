@@ -6,6 +6,7 @@ import login from './commands/login';
 import ping from './commands/ping';
 import help from './commands/help';
 import init from './commands/init';
+import version from './commands/version';
 
 const main = async (): Promise<any> => {
   const rawArgs = Arg({
@@ -13,9 +14,11 @@ const main = async (): Promise<any> => {
     '--npm': Boolean,
     '--out': String,
     '--language': String,
+    '--version': Boolean,
+    '-v': '--version',
     '-o': '--out',
     '-h': '--help',
-    '-lang': '--language',
+    '-l': '--language',
   }, { argv: process.argv.slice(2) });
 
   const {
@@ -24,6 +27,10 @@ const main = async (): Promise<any> => {
   } = rawArgs;
 
   const args = { ...flags, '--language': language };
+
+  if (args['--version']) {
+    return version(['versions'], args);
+  }
 
   if (args['--help'] || !args._.length) {
     return help(['help'], args);
@@ -36,6 +43,7 @@ const main = async (): Promise<any> => {
     case 'generate': return generate(rawArgs._, args);
     case 'ping': return ping(rawArgs._, args);
     case 'init': return init(rawArgs._, args);
+    default: return help(['help'], args);
   }
 };
 
