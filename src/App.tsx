@@ -5,7 +5,6 @@ import ProjectForm from './screens/ProjectFormScreen';
 import GenerateScreen from './screens/GenerateScreen';
 import MessageScreen from './screens/MessageScreen';
 import HelpScreen from './screens/HelpScreen';
-import ConfirmScreen from './screens/ConfirmScreen';
 import HealthCheck from './screens/HealthCheck';
 
 import AppProvider from './components/context/AppProvider';
@@ -28,10 +27,6 @@ const routes = [
   {
     component: HealthCheck,
     routeKey: 'ping',
-  },
-  {
-    component: ConfirmScreen,
-    routeKey: 'confirm',
   },
   {
     component: HelpScreen,
