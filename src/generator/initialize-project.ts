@@ -64,7 +64,7 @@ const getTsConfig = () => `
     "moduleResolution": "node",
     "rootDir": "src",
     "allowJs": true,
-    "outDir": "lib",
+    "outDir": "build",
     "typeRoots": ["node_modules/@types"],
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
