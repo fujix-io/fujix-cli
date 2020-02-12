@@ -104,7 +104,7 @@ const ProjectForm: React.FC<AppContextType> = () => {
         }
 
         const projectSlug = parse(credentials.url).host?.split('.')[0];
-        const clientDir = `node_modules/@fujix/client/${projectSlug}`;
+        const clientDir = `generated/${projectSlug}`;
 
         process.env.FUJIX_PROJECT_SLUG = projectSlug;
         process.env.FUJIX_ROOT_TOKEN = credentials.token;

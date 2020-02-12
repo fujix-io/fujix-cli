@@ -20,7 +20,7 @@ type SimpleCodeInterface = {
 
 const getSimpleCode: SimpleCodeInterface = {
   typescript: ({ url, token, slug }: SimpleCodeConfig) => `
-import FujiX from '@fujix/client/${slug}';
+import FujiX from '../generated/${slug}';
 
 // Move these variables to the your environmental variables
 const fujix = new FujiX({ authorization: '${token}', url: '${url}' });
@@ -33,7 +33,7 @@ testCall();
 
 `,
   javascript: ({ url, token, slug }: SimpleCodeConfig) => `
-const FujiX = require('@fujix/client/${slug}');
+const FujiX = require('../generated/${slug}');
 
 // Move these variables to the your environmental variables
 const fujix = new FujiX({ authorization: '${token}', url: '${url}' });
