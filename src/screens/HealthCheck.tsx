@@ -18,7 +18,7 @@ const HealthCheck = () => {
     const credentials = {
       token: process.env.FUJIX_ROOT_TOKEN!,
       url: process.env.FUJIX_PROJECT_URL!,
-    }
+    };
 
     setCredentials(credentials);
   }, []);
