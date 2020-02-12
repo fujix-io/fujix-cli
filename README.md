@@ -16,18 +16,7 @@ Used for generating bindings code by credentials from fujix-credentials.json (al
 
 ### flags:
   - `--language/-l <typescript|javascript>` - used for selecting language of generated code
-  - `--out/-o <folder_name>` - used for specifying generated folder name
-  - `--npm` - used for selecting package manager which using by generation process
   - `-v/--version` - used for displaying package version
   - `-v` - used for displaying package version
   - `-h/--help` - used for displaying list of commands
-
-
-### `ping`
-Used for checking avialability of server by provided credentials from fujix-credentials.json
-
-### `login`
-Used for authentication for project
-
-
 

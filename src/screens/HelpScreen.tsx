@@ -23,14 +23,14 @@ const helps: HelpSection[] = [
         command: 'fujix generate',
         description: 'Generate Fuji X client',
       },
-      {
-        command: 'fujix login',
-        description: 'Login with Fuji X project url and root token',
-      },
-      {
-        command: 'fujix ping',
-        description: 'Check endpoint availability',
-      },
+      // {
+      //   command: 'fujix login',
+      //   description: 'Login with Fuji X project url and root token',
+      // },
+      // {
+      //   command: 'fujix ping',
+      //   description: 'Check endpoint availability',
+      // },
       {
         command: <React.Fragment>
           <Color hex={colors.success}>fujix init </Color>
@@ -46,30 +46,30 @@ const helps: HelpSection[] = [
   {
     title: 'Flags',
     commands: [
-      {
-        command: <React.Fragment>
-          <Color hex={colors.success}>--out/-o </Color>
-          <Color hex={colors.green}>{'<folder_name>'}</Color>
-        </React.Fragment>,
-        description: 'Specify generated folder name',
-      },
-      {
-        command: <React.Fragment>
-          <Color hex={colors.success}>--language/-l </Color>
-          <Color hex={colors.green}>{'<typescript|javascript>'}</Color>
-        </React.Fragment>,
-        description: 'Specify language for generated code',
-      },
+      // {
+      //   command: <React.Fragment>
+      //     <Color hex={colors.success}>--out/-o </Color>
+      //     <Color hex={colors.green}>{'<folder_name>'}</Color>
+      //   </React.Fragment>,
+      //   description: 'Specify generated folder name',
+      // },
+      // {
+      //   command: <React.Fragment>
+      //     <Color hex={colors.success}>--language/-l </Color>
+      //     <Color hex={colors.green}>{'<typescript|javascript>'}</Color>
+      //   </React.Fragment>,
+      //   description: 'Specify language for generated code',
+      // },
       {
         command: <React.Fragment>
           <Color hex={colors.success}>--version/-v</Color>
         </React.Fragment>,
         description: 'Show versions of Fujix packages',
       },
-      {
-        command: '--npm',
-        description: 'Use NPM instead of Yarn',
-      },
+      // {
+      //   command: '--npm',
+      //   description: 'Use NPM instead of Yarn',
+      // },
     ],
   },
 ];

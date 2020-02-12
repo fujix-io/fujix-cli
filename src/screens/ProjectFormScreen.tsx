@@ -1,7 +1,9 @@
 import React from 'react';
 import { Box, Text, Color, useInput } from 'ink';
 import Spinner from 'ink-spinner';
-import { writeFileSync, existsSync } from 'fs';
+import { parse } from 'url';
+
+import { existsSync, mkdirSync, readFileSync } from 'fs';
 
 import TextInput from '../components/common/TextInput';
 import withAppContext from '../components/context/withAppContext';
@@ -14,7 +16,6 @@ import useRouter from '../hooks/useRouter';
 import useApp from '../hooks/useApp';
 
 import colors from '../colors';
-import { ROOT_DIR, GENERATED_DIR_PATH } from '../generator';
 
 type InputNames = 'url' | 'token';
 
@@ -82,19 +83,6 @@ const ProjectForm: React.FC<AppContextType> = () => {
         router.setRoute('message', { params: { text: <Box><Color red>🤷 Url is invalid</Color> </Box> } });
       }
 
-      writeFileSync(`${ROOT_DIR()}/fujix-credentials.json`, `{
-  "token": "${credentials.token}",
-  "url": "${credentials.url}"
-}`);
-
-//       if (existsSync(`${GENERATED_DIR_PATH(flags['--out'])}/.env`)) {
-//         const environmentFile = `
-// FUJIX_ROOT_TOKEN=${credentials.token}
-// FUJIX_PROJECT_URL=${credentials.url}
-//         `;
-
-//         writeFileSync(`${GENERATED_DIR_PATH(flags['--out'])}/.env`, environmentFile, { encoding: 'utf-8' });
-//       }
       setAuthChecking(true);
       const result = await checkIntrospectionQuery(credentials);
       setAuthChecking(false);
@@ -108,8 +96,20 @@ const ProjectForm: React.FC<AppContextType> = () => {
       }
 
       if (isGenerate && result) {
+
+        if (args[0] === 'init') {
+          const targetDir = args[1];
+          mkdirSync(`${process.cwd()}/${targetDir}`);
+          process.env.FUJIX_CHILD_DIR = targetDir;
+        }
+
+        const projectSlug = parse(credentials.url).host?.split('.')[0];
+        const clientDir = `node_modules/@fujix/client/${projectSlug}`;
+
+        process.env.FUJIX_PROJECT_SLUG = projectSlug;
         process.env.FUJIX_ROOT_TOKEN = credentials.token;
         process.env.FUJIX_PROJECT_URL = credentials.url;
+        process.env.FUJIX_CLIENT_DIR = clientDir;
 
         router.setRoute('ping');
       }

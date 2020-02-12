@@ -1,11 +1,22 @@
-import { existsSync } from 'fs';
+import { existsSync, mkdirSync } from 'fs';
 import rimraf from 'rimraf';
 
 import { GENERATED_DIR_PATH, MethodOptions } from '.';
 
 const clearGenerated = async (options: MethodOptions) => {
-  if (existsSync(GENERATED_DIR_PATH(options.context.flags['--out']))) {
-    await new Promise((resolve, reject) => rimraf(GENERATED_DIR_PATH(options.context.flags['--out']), (err) => {
+  const clientDir = process.env.FUJIX_CLIENT_DIR!;
+  const clientDirPaths = clientDir.split('/');
+
+  clientDirPaths.slice(1).reduce((r, path) => {
+    if (!existsSync(GENERATED_DIR_PATH(r))) {
+      mkdirSync(GENERATED_DIR_PATH(r));
+    }
+
+    return `${r}/${path}`;
+  }, clientDirPaths[0]);
+
+  if (existsSync(GENERATED_DIR_PATH(clientDir))) {
+    await new Promise((resolve, reject) => rimraf(GENERATED_DIR_PATH(clientDir), (err) => {
       if (err) reject(err);
       resolve();
     }));

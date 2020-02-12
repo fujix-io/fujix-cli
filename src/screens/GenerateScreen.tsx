@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Color } from 'ink';
 
-import generatorSteps, { StepNames, Step, GENERATED_DIR_PATH } from '../generator';
+import getGeneratorSteps, { StepNames, Step, GENERATED_DIR_PATH, ROOT_DIR } from '../generator';
 import GeneratorStepItem from '../components/generate/GeneratorStepItem';
 import colors from '../colors';
 import useApp from '../hooks/useApp';
@@ -22,12 +22,15 @@ type StepStateMap = {
 };
 
 const GenerateScreen = () => {
+  const context = useApp();
+  const isInit = context.args[0] === 'init';
+
+  const generatorSteps = getGeneratorSteps(isInit);
   const [steps, setSteps] = useState<StepStateMap>(generatorSteps.reduce((r, { name, label }) => ({
     ...r, [name]: { label, status: 'pending' },
   }), {}) as StepStateMap);
   const [step, setStep] = useState('');
   const [failedStep, setFailedStep] = useState<Step>();
-  const context = useApp();
   const { FUJIX_ROOT_TOKEN: token, FUJIX_PROJECT_URL: url } = process.env;
 
   const setStepStatus = (name: StepNames, status: StepStatus, executionTime?: number, message?: string) => {
@@ -77,8 +80,11 @@ const GenerateScreen = () => {
   const getResultLabel = () => succeededSteps === generatorSteps.length
     ? <Box paddingBottom={1} flexDirection="column">
         <Box paddingLeft={1} flexDirection="column">
+          {isInit && <Box marginBottom={1}>
+            <Color hex={colors.success}>📚  Now you should move to the {ROOT_DIR()}, run `npm install` and enjoy FujiX Client</Color>
+          </Box>}
           <Box marginBottom={1}>
-            <Color hex={colors.success}>🚀  FujiX client is generated successfully in {GENERATED_DIR_PATH(context.flags['--out'])}</Color>
+            <Color hex={colors.success}>🚀  FujiX client is generated successfully in {GENERATED_DIR_PATH(process.env.FUJIX_CLIENT_DIR)}</Color>
           </Box>
           <Color hex={colors.success}>🕒  Total time: {totalTime}ms</Color>
         </Box>
@@ -95,7 +101,7 @@ const GenerateScreen = () => {
   return (
     <Box paddingTop={1} flexDirection="column">
       <Box paddingLeft={1} flexDirection="column">
-        <Box marginBottom={1}><Color hex={colors.success}>🗂  Generating into: {GENERATED_DIR_PATH(context.flags['--out'])}</Color></Box>
+        <Box marginBottom={1}><Color hex={colors.success}>🗂  Generating into: {GENERATED_DIR_PATH(process.env.FUJIX_CLIENT_DIR)}</Color></Box>
         <Box marginBottom={1}><Color hex={colors.white}>⚙️  Succeeded steps: {succeededSteps}/{generatorSteps.length}</Color></Box>
         {Object.keys(steps).map((key: StepNames) => {
           const currentStep = steps[key];
