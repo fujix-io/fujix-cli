@@ -12,7 +12,9 @@
   "node": ">=8"
  },
  "files": [
-  "/lib"
+  "/lib",
+  "yarn.lock",
+  "README.md"
  ],
  "scripts": {
   "alpha": "yarn run build && npm version prerelease --preid=\"alpha\" && npm publish --tag alpha",
