@@ -87,7 +87,7 @@ const getPackageJson = (options: PackageJsonConfig) => `
   "version": "0.0.1",
   "main": "./lib/index.js",
   "scripts": {
-    "start": "node ${options.isTypeScript ? 'build' : 'src'}/index.js"${options.isTypeScript ? ',\n"build":"tsc --declaration src"' : ''}
+    "start": "node ${options.isTypeScript ? 'build' : 'src'}/index.js"${options.isTypeScript ? ',\n"build":"tsc --declaration"' : ''}
   }${options.isTypeScript ? ',\n"devDependencies": { "typescript": "^3.7.5" }' : ''}
 }
 `;
