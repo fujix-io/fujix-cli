@@ -52,7 +52,7 @@
   "tslint-config-prettier": "1.18.0"
  },
  "dependencies": {
-  "@fujix/client": "^0.0.1-alpha.2",
+  "@fujix/client": "^0.0.1-alpha.4",
   "arg": "^4.1.2",
   "import-jsx": "^3.1.0",
   "ink": "^2.6.0",
