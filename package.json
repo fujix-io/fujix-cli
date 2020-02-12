@@ -1,6 +1,6 @@
 {
  "name": "@fujix/cli",
- "version": "0.1.1-beta.14",
+ "version": "0.1.1-beta.15",
  "bin": {
   "fujix": "./lib/index.js"
  },
