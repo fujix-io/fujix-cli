@@ -1,6 +1,6 @@
 {
  "name": "@fujix/cli",
- "version": "0.1.1-beta.11",
+ "version": "0.1.1-beta.15",
  "bin": {
   "fujix": "./lib/index.js"
  },
@@ -12,7 +12,9 @@
   "node": ">=8"
  },
  "files": [
-  "/lib"
+  "/lib",
+  "yarn.lock",
+  "README.md"
  ],
  "scripts": {
   "alpha": "yarn run build && npm version prerelease --preid=\"alpha\" && npm publish --tag alpha",
@@ -52,7 +54,7 @@
   "tslint-config-prettier": "1.18.0"
  },
  "dependencies": {
-  "@fujix/client": "^0.0.1-alpha.5",
+  "@fujix/client": "0.0.1-alpha.6",
   "arg": "^4.1.2",
   "import-jsx": "^3.1.0",
   "ink": "^2.6.0",
