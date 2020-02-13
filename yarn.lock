@@ -834,10 +834,10 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
-"@fujix/client@^0.0.1-alpha.10":
-  version "0.0.1-alpha.10"
-  resolved "https://registry.yarnpkg.com/@fujix/client/-/client-0.0.1-alpha.10.tgz#81af48b25dae5b3b62be338f213a94f2034dd9ed"
-  integrity sha512-Zz8WDmkFK7vNPlTXW/fOZ9N9EioDMQ2HKp5tb3hfHKlO95msHym/p1RuQyyGlzuQWdBRhd3SfbQNCUNi5Juegw==
+"@fujix/client@^0.0.1-beta.1":
+  version "0.0.1-beta.1"
+  resolved "https://registry.yarnpkg.com/@fujix/client/-/client-0.0.1-beta.1.tgz#72a026e11a06f08e0a8718d4563b5a27ce3a36db"
+  integrity sha512-2bjBAbyet1tIItMoIKSiZ5CwpzgTi/Ajeny3LzYAPwJ+p1EJXm5e+EJBKLbYoJp0k8RROXiC2ENH+ryeA6mBtQ==
 
 "@graphql-codegen/plugin-helpers@1.11.2":
   version "1.11.2"
