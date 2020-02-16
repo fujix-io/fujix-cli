@@ -1,12 +1,12 @@
 {
  "name": "@fujix/cli",
- "version": "0.1.1-beta.26",
+ "version": "0.1.0",
  "bin": {
   "fujix": "./lib/index.js"
  },
  "types": "./lib/index.d.ts",
  "private": false,
- "author": "Alexey Maligon (fania@milkandcartoons.com)",
+ "author": "Alexey Maligon (fujix.io)",
  "license": "MIT",
  "engines": {
   "node": ">=8"
