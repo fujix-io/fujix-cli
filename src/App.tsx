@@ -5,7 +5,7 @@ import ProjectForm from './screens/ProjectFormScreen';
 import GenerateScreen from './screens/GenerateScreen';
 import MessageScreen from './screens/MessageScreen';
 import HelpScreen from './screens/HelpScreen';
-import ConfirmScreen from './screens/ConfirmScreen';
+import VersionScreen from './screens/VersionScreen';
 import HealthCheck from './screens/HealthCheck';
 
 import AppProvider from './components/context/AppProvider';
@@ -26,12 +26,12 @@ const routes = [
     routeKey: 'login',
   },
   {
-    component: HealthCheck,
-    routeKey: 'ping',
+    component: VersionScreen,
+    routeKey: 'version',
   },
   {
-    component: ConfirmScreen,
-    routeKey: 'confirm',
+    component: HealthCheck,
+    routeKey: 'ping',
   },
   {
     component: HelpScreen,

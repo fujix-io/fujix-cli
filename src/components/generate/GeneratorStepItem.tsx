@@ -48,7 +48,7 @@ const GeneratorStepItem: React.FC<GeneratorStepItemProps> = ({ status, label, is
   const getExecutionTime = () => executionTime && <Color hex={getExecutionLabelColor()}>{executionTime}ms</Color>;
 
   return (
-    <Box marginBottom={1} flexDirection="row">
+    <Box marginTop={1} flexDirection="row">
       <Box>{getStatusIndicator()}</Box><Box>{getLabel()}</Box> - {getExecutionTime()}
     </Box>
   );

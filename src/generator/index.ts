@@ -1,9 +1,6 @@
-import generateSchema from './generate-schema';
-// import generateTypings from './generate-typings';
-import installPackages from './install-packages';
 import clearGenerated from './clear-generated';
-import configureEnvironment from './configure-environment';
 import generateBindings from './generate-bindings';
+import initializeProject from './initialize-project';
 import { AppContextType } from '../components/context/AppContext';
 
 const getChildDir = () => process.env.FUJIX_CHILD_DIR ? `/${process.env.FUJIX_CHILD_DIR}` : '';
@@ -12,32 +9,19 @@ export const ROOT_DIR = () => `${process.cwd()}${getChildDir()}`;
 
 export const GENERATED_DIR_PATH = (folderName: string = 'fujix-generated') => `${ROOT_DIR()}/${folderName}`;
 
-const steps = [
-  {
-    name: 'clearGenerated',
-    label: '🗑  Clearing generated dir',
-    method: clearGenerated,
-  },
-  {
-    name: 'installPackages',
-    label: '📦 Installing required packages',
-    method: installPackages,
-  },
-  {
-    name: 'configureEnvironment',
-    label: '🔐 Configure FujiX environment',
-    method: configureEnvironment,
-  },
-  {
-    name: 'generateSchema',
-    label: '📃 Generating GraphQL Schema',
-    method: generateSchema,
-  },
-  // {
-  //   name: 'generateTypings',
-  //   label: '📐 Generating Typescript types',
-  //   method: generateTypings
-  // },
+const steps = (isInit: boolean = false) => [
+  ...(isInit
+    ? [{
+      name: 'clearGenerated',
+      label: '🗂  Initialize project',
+      method: initializeProject,
+    }]
+    : [{
+      name: 'clearGenerated',
+      label: '🗑  Clearing generated dir',
+      method: clearGenerated,
+    }]
+  ),
   {
     name: 'generateBindings',
     label: '🔗 Generating bindings',
