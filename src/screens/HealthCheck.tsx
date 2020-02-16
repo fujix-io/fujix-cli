@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import fs from 'fs';
 
 import { Box, Color } from 'ink';
 import Spinner from 'ink-spinner';
@@ -8,7 +7,6 @@ import checkIntrospectionQuery from '../helpers/check-introspection-query';
 import useRouter from '../hooks/useRouter';
 import useApp from '../hooks/useApp';
 import colors from '../colors';
-import { ROOT_DIR } from '../generator';
 
 const HealthCheck = () => {
   const router = useRouter();
@@ -17,7 +15,10 @@ const HealthCheck = () => {
   const [credentials, setCredentials] = useState<Credentials>({ url: '', token: '' });
 
   useEffect(() => {
-    const credentials = JSON.parse(fs.readFileSync(`${ROOT_DIR()}/fujix-credentials.json`, { encoding: 'utf-8' }));
+    const credentials = {
+      token: process.env.FUJIX_ROOT_TOKEN!,
+      url: process.env.FUJIX_PROJECT_URL!,
+    };
 
     setCredentials(credentials);
   }, []);
