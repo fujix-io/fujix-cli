@@ -46,20 +46,34 @@ const helps: HelpSection[] = [
   {
     title: 'Flags',
     commands: [
-      // {
-      //   command: <React.Fragment>
-      //     <Color hex={colors.success}>--out/-o </Color>
-      //     <Color hex={colors.green}>{'<folder_name>'}</Color>
-      //   </React.Fragment>,
-      //   description: 'Specify generated folder name',
-      // },
-      // {
-      //   command: <React.Fragment>
-      //     <Color hex={colors.success}>--language/-l </Color>
-      //     <Color hex={colors.green}>{'<typescript|javascript>'}</Color>
-      //   </React.Fragment>,
-      //   description: 'Specify language for generated code',
-      // },
+      {
+        command: <React.Fragment>
+          <Color hex={colors.success}>--out/-o </Color>
+          <Color hex={colors.green}>{'<folder_name>'}</Color>
+        </React.Fragment>,
+        description: 'Specify generated folder name',
+      },
+      {
+        command: <React.Fragment>
+          <Color hex={colors.success}>--url/-u </Color>
+          <Color hex={colors.green}>{'<url>'}</Color>
+        </React.Fragment>,
+        description: 'Provide endpoint url',
+      },
+      {
+        command: <React.Fragment>
+          <Color hex={colors.success}>--token/-t </Color>
+          <Color hex={colors.green}>{'<token>'}</Color>
+        </React.Fragment>,
+        description: 'Provide endpoint token',
+      },
+      {
+        command: <React.Fragment>
+          <Color hex={colors.success}>--language/-l </Color>
+          <Color hex={colors.green}>{'<typescript|javascript>'}</Color>
+        </React.Fragment>,
+        description: 'Specify language for generated code',
+      },
       {
         command: <React.Fragment>
           <Color hex={colors.success}>--version/-v</Color>

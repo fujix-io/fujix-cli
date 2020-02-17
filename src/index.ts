@@ -12,10 +12,16 @@ const main = async (): Promise<any> => {
   const rawArgs = Arg({
     '--help': Boolean,
     '--version': Boolean,
+    '--out': String,
+    '--url': String,
+    '--token': String,
     '--language': String,
     '-v': '--version',
     '-l': '--language',
     '-h': '--help',
+    '-o': '--out',
+    '-t': '--token',
+    '-u': '--url',
   }, { argv: process.argv.slice(2) });
 
   const {
