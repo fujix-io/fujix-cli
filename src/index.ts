@@ -15,21 +15,16 @@ const main = async (): Promise<any> => {
     '--out': String,
     '--url': String,
     '--token': String,
-    '--language': String,
+    // '--language': String,
     '-v': '--version',
-    '-l': '--language',
+    // '-l': '--language',
     '-h': '--help',
     '-o': '--out',
     '-t': '--token',
     '-u': '--url',
   }, { argv: process.argv.slice(2) });
 
-  const {
-    '--language': language = 'typescript',
-    ...flags
-  } = rawArgs;
-
-  const args = { ...flags, '--language': language };
+  const args = rawArgs;
 
   if (args['--version']) {
     return version(['versions'], args);
@@ -43,7 +38,7 @@ const main = async (): Promise<any> => {
 
   switch (command) {
     case 'generate': return generate(rawArgs._, args);
-    case 'init': return init(rawArgs._, args);
+    // case 'init': return init(rawArgs._, args);
     default: return help(['help'], args);
   }
 };

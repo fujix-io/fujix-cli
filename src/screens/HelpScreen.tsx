@@ -31,16 +31,16 @@ const helps: HelpSection[] = [
       //   command: 'fujix ping',
       //   description: 'Check endpoint availability',
       // },
-      {
-        command: <React.Fragment>
-          <Color hex={colors.success}>fujix init </Color>
-          <Color hex={colors.green}>{'<project_name>'}</Color>
-        </React.Fragment>,
-        description: <React.Fragment>
-          <Color hex={colors.white}>Init project in folder: </Color>
-          <Color hex={colors.green}>{'<project_name>'}</Color>
-        </React.Fragment>,
-      },
+      // {
+      //   command: <React.Fragment>
+      //     <Color hex={colors.success}>fujix init </Color>
+      //     <Color hex={colors.green}>{'<project_name>'}</Color>
+      //   </React.Fragment>,
+      //   description: <React.Fragment>
+      //     <Color hex={colors.white}>Init project in folder: </Color>
+      //     <Color hex={colors.green}>{'<project_name>'}</Color>
+      //   </React.Fragment>,
+      // },
     ],
   },
   {
@@ -51,34 +51,34 @@ const helps: HelpSection[] = [
           <Color hex={colors.success}>--out/-o </Color>
           <Color hex={colors.green}>{'<folder_name>'}</Color>
         </React.Fragment>,
-        description: 'Specify generated folder name',
+        description: 'Folder for a generated code',
       },
       {
         command: <React.Fragment>
           <Color hex={colors.success}>--url/-u </Color>
           <Color hex={colors.green}>{'<url>'}</Color>
         </React.Fragment>,
-        description: 'Provide endpoint url',
+        description: 'Endpoint url',
       },
       {
         command: <React.Fragment>
           <Color hex={colors.success}>--token/-t </Color>
           <Color hex={colors.green}>{'<token>'}</Color>
         </React.Fragment>,
-        description: 'Provide endpoint token',
+        description: 'Root token',
       },
-      {
-        command: <React.Fragment>
-          <Color hex={colors.success}>--language/-l </Color>
-          <Color hex={colors.green}>{'<typescript|javascript>'}</Color>
-        </React.Fragment>,
-        description: 'Specify language for initiated project',
-      },
+      // {
+      //   command: <React.Fragment>
+      //     <Color hex={colors.success}>--language/-l </Color>
+      //     <Color hex={colors.green}>{'<typescript|javascript>'}</Color>
+      //   </React.Fragment>,
+      //   description: 'Language for the generated code',
+      // },
       {
         command: <React.Fragment>
           <Color hex={colors.success}>--version/-v</Color>
         </React.Fragment>,
-        description: 'Show versions of Fujix packages',
+        description: 'Versions of Fujix packages',
       },
       // {
       //   command: '--npm',

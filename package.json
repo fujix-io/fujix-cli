@@ -1,72 +1,56 @@
 {
- "name": "@fujix/cli",
- "version": "0.1.1",
- "bin": {
-  "fujix": "./lib/index.js"
- },
- "types": "./lib/index.d.ts",
- "private": false,
- "author": "Alexey Maligon (fujix.io)",
- "license": "MIT",
- "engines": {
-  "node": ">=8"
- },
- "files": [
-  "/lib",
-  "yarn.lock",
-  "README.md"
- ],
- "scripts": {
-  "alpha": "yarn run build && npm version prerelease --preid=\"alpha\" && npm publish --tag alpha",
-  "beta": "yarn run build && npm version prerelease --preid=\"beta\" && npm publish --tag beta",
-  "patch": "yarn run build && npm version patch && npm publish",
-  "minor": "yarn run build && npm version minor && npm publish",
-  "major": "yarn run build && npm version major && npm publish",
-  "build": "rm -rf lib && tsc --declaration",
-  "test": "yarn build && fujix"
- },
- "babel": {
-  "presets": [
-   "@babel/preset-react",
-   [
-    "@babel/preset-env",
-    {
-     "targets": {
-      "node": true
-     }
-    }
-   ]
-  ]
- },
- "devDependencies": {
-  "@babel/preset-env": "^7.8.3",
-  "@babel/preset-react": "^7.8.3",
-  "@graphql-codegen/typescript": "^1.11.2",
-  "@types/ink-spinner": "^2.0.3",
-  "@types/ink-text-input": "^2.0.1",
-  "@types/node": "^13.5.3",
-  "@types/react": "^16.9.17",
-  "@types/request-promise": "^4.1.45",
-  "@types/rimraf": "^2.0.3",
-  "ts-node-dev": "^1.0.0-pre.44",
-  "tslint": "5.13.0",
-  "tslint-config-airbnb": "5.11.1",
-  "tslint-config-prettier": "1.18.0"
- },
- "dependencies": {
-  "@fujix/client": "^0.1.0-beta.3",
-  "arg": "^4.1.2",
-  "import-jsx": "^3.1.0",
-  "ink": "^2.6.0",
-  "ink-divider": "^2.0.1",
-  "ink-spinner": "^3.0.1",
-  "ink-text-input": "^3.2.2",
-  "react": "^16.12.0",
-  "request": "^2.88.0",
-  "request-promise": "^4.2.5",
-  "rimraf": "^3.0.0",
-  "utility-types": "^3.10.0"
- },
- "main": "./lib/index.js",
- "repository": "git@github.com:fujix-io/fujix-cli.git"
+  "name": "@fujix/cli",
+  "version": "0.1.2",
+  "bin": {
+    "fujix": "./lib/index.js"
+  },
+  "types": "./lib/index.d.ts",
+  "private": false,
+  "author": "Alexey Maligon (fujix.io)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "/lib",
+    "yarn.lock",
+    "README.md"
+  ],
+  "scripts": {
+    "alpha": "yarn run build && npm version prerelease --preid=\"alpha\" && npm publish --tag alpha",
+    "beta": "yarn run build && npm version prerelease --preid=\"beta\" && npm publish --tag beta",
+    "patch": "yarn run build && npm version patch && npm publish",
+    "minor": "yarn run build && npm version minor && npm publish",
+    "major": "yarn run build && npm version major && npm publish",
+    "build": "rm -rf lib && tsc --declaration",
+    "test": "yarn build && fujix"
+  },
+  "devDependencies": {
+    "@types/ink-spinner": "^2.0.3",
+    "@types/ink-text-input": "^2.0.1",
+    "@types/node": "^13.5.3",
+    "@types/react": "^16.9.17",
+    "@types/request-promise": "^4.1.45",
+    "@types/rimraf": "^2.0.3",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "tslint": "5.13.0",
+    "tslint-config-airbnb": "5.11.1",
+    "tslint-config-prettier": "1.18.0"
+  },
+  "dependencies": {
+    "@fujix/client": "^0.1.0-beta.3",
+    "arg": "^4.1.2",
+    "import-jsx": "^3.1.0",
+    "ink": "^2.6.0",
+    "ink-divider": "^2.0.1",
+    "ink-spinner": "^3.0.1",
+    "ink-text-input": "^3.2.2",
+    "react": "^16.12.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
+    "rimraf": "^3.0.0",
+    "utility-types": "^3.10.0"
+  },
+  "main": "./lib/index.js",
+  "repository": "git@github.com:fujix-io/fujix-cli.git"
 }
