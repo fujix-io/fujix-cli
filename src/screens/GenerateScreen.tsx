@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Color } from 'ink';
 
-import getGeneratorSteps, { StepNames, Step, GENERATED_DIR_PATH, ROOT_DIR } from '../generator';
+import getGeneratorSteps, { StepNames, Step, GENERATED_DIR_PATH, getChildDir, CLIENT_DIR } from '../generator';
 import GeneratorStepItem from '../components/generate/GeneratorStepItem';
 import colors from '../colors';
 import useApp from '../hooks/useApp';
@@ -81,10 +81,14 @@ const GenerateScreen = () => {
     ? <Box paddingBottom={1} flexDirection="column">
         <Box paddingLeft={1} flexDirection="column">
           {isInit && <Box marginBottom={1}>
-            <Color hex={colors.success}>📚  Now you should move to the {ROOT_DIR()}, run `npm install` and enjoy FujiX Client</Color>
+            <Color hex={colors.success}>
+              📚  Now you should move to the {process.env.FUJIX_CHILD_DIR}, run `npm install` and enjoy FujiX Client
+            </Color>
           </Box>}
           <Box marginBottom={1}>
-            <Color hex={colors.success}>🚀  FujiX client is generated successfully in {GENERATED_DIR_PATH(process.env.FUJIX_CLIENT_DIR)}</Color>
+            <Color hex={colors.success}>
+              🚀  FujiX client is generated successfully in {CLIENT_DIR()}
+            </Color>
           </Box>
           <Color hex={colors.success}>🕒  Total time: {totalTime}ms</Color>
         </Box>
@@ -101,7 +105,7 @@ const GenerateScreen = () => {
   return (
     <Box paddingTop={1} flexDirection="column">
       <Box paddingLeft={1} flexDirection="column">
-        <Box marginBottom={1}><Color hex={colors.success}>🗂  Generating into: {GENERATED_DIR_PATH(process.env.FUJIX_CLIENT_DIR)}</Color></Box>
+        <Box marginBottom={1}><Color hex={colors.success}>🗂  Generating into: {CLIENT_DIR()}</Color></Box>
         <Box marginBottom={1}><Color hex={colors.white}>⚙️  Succeeded steps: {succeededSteps}/{generatorSteps.length}</Color></Box>
         {Object.keys(steps).map((key: StepNames) => {
           const currentStep = steps[key];

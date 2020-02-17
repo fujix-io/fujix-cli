@@ -3,7 +3,7 @@ import { Box, Text, Color, useInput } from 'ink';
 import Spinner from 'ink-spinner';
 import { parse } from 'url';
 
-import { existsSync, mkdirSync, readFileSync } from 'fs';
+import { mkdirSync } from 'fs';
 
 import TextInput from '../components/common/TextInput';
 import withAppContext from '../components/context/withAppContext';
@@ -104,7 +104,7 @@ const ProjectForm: React.FC<AppContextType> = () => {
         }
 
         const projectSlug = parse(credentials.url).host?.split('.')[0];
-        const clientDir = `generated/${projectSlug}`;
+        const clientDir = `generated/fujix/${projectSlug}`;
 
         process.env.FUJIX_PROJECT_SLUG = projectSlug;
         process.env.FUJIX_ROOT_TOKEN = credentials.token;
