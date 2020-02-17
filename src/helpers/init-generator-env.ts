@@ -26,7 +26,7 @@ const initGeneratorEnv = ({ args, flags }: InitGeneratorEnvConfig) => {
   }
 
   const projectSlug = parse(url).host?.split('.')[0];
-  const clientDir = `${generatedFieldName}/${projectSlug}`;
+  const clientDir = `${generatedFieldName}`;
 
   process.env.FUJIX_PROJECT_SLUG = projectSlug;
   process.env.FUJIX_ROOT_TOKEN = token;

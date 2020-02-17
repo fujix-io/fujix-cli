@@ -33,7 +33,7 @@ const HealthCheck = () => {
       router.setRoute('message', {
         params: {
           text: <Box paddingLeft={1}>
-            <Color hex={colors.danger}>🌑 {credentials.url} does not response or token is invalid</Color>
+            <Color hex={colors.danger}>🌑 {credentials.url} does not respond or token is invalid</Color>
           </Box>,
         },
       });
