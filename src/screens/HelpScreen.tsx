@@ -72,7 +72,7 @@ const helps: HelpSection[] = [
           <Color hex={colors.success}>--language/-l </Color>
           <Color hex={colors.green}>{'<typescript|javascript>'}</Color>
         </React.Fragment>,
-        description: 'Specify language for generated code',
+        description: 'Specify language for initiated project',
       },
       {
         command: <React.Fragment>
