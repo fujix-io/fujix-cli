@@ -46,9 +46,11 @@ const ProjectForm: React.FC<AppContextType> = () => {
   const router = useRouter();
   const { args, flags } = useApp();
 
+  const url = flags['--url'] || null;
+
   const [authChecking, setAuthChecking] = React.useState(false);
-  const [values, setValues] = React.useState<Values>({ url: '', token: '' });
-  const [active, setActive] = React.useState(0);
+  const [values, setValues] = React.useState<Values>({ url, token: '' });
+  const [active, setActive] = React.useState(url ? 1 : 0);
 
   useInput((input, key) => {
     if (key.upArrow) {
@@ -104,7 +106,7 @@ const ProjectForm: React.FC<AppContextType> = () => {
         }
 
         const projectSlug = parse(credentials.url).host?.split('.')[0];
-        const clientDir = 'generated/fujix';
+        const clientDir = flags['--out'] || 'generated/fujix';
 
         process.env.FUJIX_PROJECT_SLUG = projectSlug;
         process.env.FUJIX_ROOT_TOKEN = credentials.token;
