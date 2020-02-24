@@ -46,7 +46,7 @@ const ProjectForm: React.FC<AppContextType> = () => {
   const router = useRouter();
   const { args, flags } = useApp();
 
-  const url = flags['--url'] || null;
+  const url = flags['--url'] || '';
 
   const [authChecking, setAuthChecking] = React.useState(false);
   const [values, setValues] = React.useState<Values>({ url, token: '' });
