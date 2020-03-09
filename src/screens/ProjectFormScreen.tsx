@@ -37,8 +37,8 @@ const inputs: InputSingature[] = [
   },
   {
     name: 'token',
-    label: 'Root token: ',
-    placeholder: 'Root token for endpoint',
+    label: 'Fuji X API Key: ',
+    placeholder: 'API Key for endpoint',
   },
 ];
 
@@ -90,7 +90,7 @@ const ProjectForm: React.FC<AppContextType> = () => {
       setAuthChecking(false);
 
       if (!result) {
-        router.setRoute('message', { params: { text: <Box><Color red>🙅 Endpoint does not response or token is invalid</Color> </Box> } });
+        router.setRoute('message', { params: { text: <Box><Color red>🙅 Endpoint does not response or API key is invalid</Color> </Box> } });
       }
 
       if (args[0] === 'login' && result) {
@@ -109,7 +109,7 @@ const ProjectForm: React.FC<AppContextType> = () => {
         const clientDir = flags['--out'] || 'generated/fujix';
 
         process.env.FUJIX_PROJECT_SLUG = projectSlug;
-        process.env.FUJIX_ROOT_TOKEN = credentials.token;
+        process.env.FUJIX_API_KEY = credentials.token;
         process.env.FUJIX_PROJECT_URL = credentials.url;
         process.env.FUJIX_CLIENT_DIR = clientDir;
 

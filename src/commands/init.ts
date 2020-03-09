@@ -10,7 +10,7 @@ const init = (args: string[], flags: Args) => {
   if (existsSync(targetDir)) return initInk('message', ['Init', '🔥 Directory already exists'], flags);
 
   if (flags['--url'] && flags['--token']) {
-    process.env.FUJIX_ROOT_TOKEN = flags['--token'];
+    process.env.FUJIX_API_KEY = flags['--token'];
     process.env.FUJIX_PROJECT_URL = flags['--url'];
 
     initGeneratorEnv({ args, flags });

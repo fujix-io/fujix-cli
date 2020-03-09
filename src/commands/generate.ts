@@ -4,7 +4,7 @@ import initGeneratorEnv from '../helpers/init-generator-env';
 
 const generate = (args: string[], flags: Args) => {
   if (flags['--url'] && flags['--token']) {
-    process.env.FUJIX_ROOT_TOKEN = flags['--token'];
+    process.env.FUJIX_API_KEY = flags['--token'];
     process.env.FUJIX_PROJECT_URL = flags['--url'];
 
     initGeneratorEnv({ args, flags });

@@ -16,7 +16,7 @@ const HealthCheck = () => {
 
   useEffect(() => {
     const credentials = {
-      token: process.env.FUJIX_ROOT_TOKEN!,
+      token: process.env.FUJIX_API_KEY!,
       url: process.env.FUJIX_PROJECT_URL!,
     };
 

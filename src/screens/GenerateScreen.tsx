@@ -31,7 +31,7 @@ const GenerateScreen = () => {
   }), {}) as StepStateMap);
   const [step, setStep] = useState('');
   const [failedStep, setFailedStep] = useState<Step>();
-  const { FUJIX_ROOT_TOKEN: token, FUJIX_PROJECT_URL: url } = process.env;
+  const { FUJIX_API_KEY: token, FUJIX_PROJECT_URL: url } = process.env;
 
   const setStepStatus = (name: StepNames, status: StepStatus, executionTime?: number, message?: string) => {
     const additionalFields: Omit<StepState, 'status' | 'label'> = {};
@@ -87,7 +87,7 @@ const GenerateScreen = () => {
           </Box>}
           <Box marginBottom={1}>
             <Color hex={colors.success}>
-              🚀  FujiX client is generated successfully in {CLIENT_DIR()}
+              🚀  Fuji X client is generated successfully in {CLIENT_DIR()}
             </Color>
           </Box>
           <Color hex={colors.success}>🕒  Total time: {totalTime}ms</Color>

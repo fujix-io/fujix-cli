@@ -65,7 +65,7 @@ const helps: HelpSection[] = [
           <Color hex={colors.success}>--token/-t </Color>
           <Color hex={colors.green}>{'<token>'}</Color>
         </React.Fragment>,
-        description: 'Root token',
+        description: 'Fuji X API key for your endpoint',
       },
       // {
       //   command: <React.Fragment>

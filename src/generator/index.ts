@@ -14,7 +14,7 @@ export const GENERATED_DIR_PATH = (folderName: string = 'fujix-generated') => `$
 const steps = (isInit: boolean = false) => [
   ...(isInit
     ? [{
-      name: 'clearGenerated',
+      name: 'initializeProject',
       label: '🗂  Initialize project',
       method: initializeProject,
     }]

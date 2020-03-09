@@ -10,7 +10,7 @@ interface InitGeneratorEnvConfig {
 }
 
 const initGeneratorEnv = ({ args, flags }: InitGeneratorEnvConfig) => {
-  const token = process.env.FUJIX_ROOT_TOKEN;
+  const token = process.env.FUJIX_API_KEY;
   const url = process.env.FUJIX_PROJECT_URL!;
 
   if (args[0] === 'init') {
@@ -29,7 +29,7 @@ const initGeneratorEnv = ({ args, flags }: InitGeneratorEnvConfig) => {
   const clientDir = `${generatedFieldName}`;
 
   process.env.FUJIX_PROJECT_SLUG = projectSlug;
-  process.env.FUJIX_ROOT_TOKEN = token;
+  process.env.FUJIX_API_KEY = token;
   process.env.FUJIX_PROJECT_URL = url;
   process.env.FUJIX_CLIENT_DIR = clientDir;
 };

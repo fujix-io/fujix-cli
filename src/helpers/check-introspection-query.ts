@@ -16,7 +16,7 @@ const emptyIntrospectionQuery = `
 `;
 
 const checkIntrospectionQuery = async ({ url, token }: CheckIntrospectionQueryConfig): Promise<boolean> => {
-  const headers = { Authorization: token };
+  const headers = { Authorization: token, 'fujix-api-key': token };
 
   let result;
   try {

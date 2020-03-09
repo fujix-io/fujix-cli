@@ -57,7 +57,7 @@ const App: React.FC<CLIAppProps> = ({ command, args, exit, flags }) => {
 
   return <Box flexDirection="column">
       <Divider
-        title={`FujiX - ${rootCommand.charAt(0).toUpperCase() + rootCommand.slice(1)}`}
+        title={`Fuji X - ${rootCommand.charAt(0).toUpperCase() + rootCommand.slice(1)}`}
       />
       <AppProvider flags={flags} args={args} command={command}>
         <Router defaultRoute={command}>

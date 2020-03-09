@@ -93,7 +93,7 @@ const getPackageJson = (options: PackageJsonConfig) => `
 `;
 
 const initializeProject = async (options: MethodOptions) => {
-  const token = process.env.FUJIX_ROOT_TOKEN!;
+  const token = process.env.FUJIX_API_KEY!;
   const url = process.env.FUJIX_PROJECT_URL!;
   const projectSlug = process.env.FUJIX_PROJECT_SLUG;
   const childDirName = process.env.FUJIX_CHILD_DIR;
