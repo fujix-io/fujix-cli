@@ -1,11 +1,12 @@
 import React from 'react';
 
-import AppContext, { Args } from './AppContext';
+import AppContext from './AppContext';
+import { FlagsType } from '../..';
 
 interface AppProviderProps {
   command: string;
   args: string[];
-  flags: Args;
+  flags: FlagsType;
 }
 
 const AppProvider: React.FC<AppProviderProps> = ({ children, command, args, flags }) => {

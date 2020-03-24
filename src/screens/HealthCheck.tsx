@@ -10,7 +10,7 @@ import colors from '../colors';
 
 const HealthCheck = () => {
   const router = useRouter();
-  const { args } = useApp();
+  const { args, flags } = useApp();
   const [checking, setChecking] = useState(true);
   const [credentials, setCredentials] = useState<Credentials>({ url: '', token: '' });
 
@@ -60,6 +60,10 @@ const HealthCheck = () => {
       checkEndpoint();
     }
   }, [credentials]);
+
+  const isSilent = flags['--silent'] || flags['--raw'];
+
+  if (isSilent) return null;
 
   if (checking && credentials.url && credentials.token) {
     return (

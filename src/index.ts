@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import Arg from 'arg';
+import chalk from 'chalk';
 
 import generate from './commands/generate';
 // import login from './commands/login';
@@ -8,26 +9,36 @@ import help from './commands/help';
 import init from './commands/init';
 import version from './commands/version';
 
+const rawArgs = Arg({
+  '--help': Boolean,
+  '--version': Boolean,
+  '--out': String,
+  '--url': String,
+  '--token': String,
+  '--silent': Boolean,
+  '--raw': Boolean,
+  // '--language': String,
+  '-v': '--version',
+  // '-l': '--language',
+  '-h': '--help',
+  '-o': '--out',
+  '-t': '--token',
+  '-u': '--url',
+}, { argv: process.argv.slice(2) });
+
+export type FlagsType = typeof rawArgs;
+
 const main = async (): Promise<any> => {
-  const rawArgs = Arg({
-    '--help': Boolean,
-    '--version': Boolean,
-    '--out': String,
-    '--url': String,
-    '--token': String,
-    // '--language': String,
-    '-v': '--version',
-    // '-l': '--language',
-    '-h': '--help',
-    '-o': '--out',
-    '-t': '--token',
-    '-u': '--url',
-  }, { argv: process.argv.slice(2) });
 
   const args = rawArgs;
 
   if (args['--version']) {
     return version(['versions'], args);
+  }
+
+  if ((args['--silent'] || args['--raw']) && !(args['--token'] && args['--url'])) {
+    console.log(chalk.redBright('Flags --silent/--raw can be used only with --token and --url flags'));
+    return;
   }
 
   if (args['--help'] || !args._.length) {

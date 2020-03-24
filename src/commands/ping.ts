@@ -1,7 +1,8 @@
-import { Args } from '../components/context/AppContext';
-import initInk from '../components/common/init-ink';
 
-const ping = (args: string[], flags: Args) => {
+import initInk from '../components/common/init-ink';
+import { FlagsType } from '..';
+
+const ping = (args: string[], flags: FlagsType) => {
   return initInk('ping', args, flags);
 };
 

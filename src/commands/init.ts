@@ -1,10 +1,10 @@
 import { existsSync } from 'fs';
 
-import { Args } from '../components/context/AppContext';
 import initInk from '../components/common/init-ink';
 import initGeneratorEnv from '../helpers/init-generator-env';
+import { FlagsType } from '..';
 
-const init = (args: string[], flags: Args) => {
+const init = (args: string[], flags: FlagsType) => {
   const targetDir = args[1];
   if (!targetDir) return initInk('message', ['Init', '🗂 Directory name is empty'], flags);
   if (existsSync(targetDir)) return initInk('message', ['Init', '🔥 Directory already exists'], flags);

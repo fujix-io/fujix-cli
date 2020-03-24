@@ -1,21 +1,18 @@
 import React from 'react';
+import { FlagsType } from '../..';
 
-const appContext = {
+const appContext: AppContextType = {
   command: '',
   args: [''],
-  flags: {},
+  flags: { _: [] },
 };
-
-export interface Args {
-  [key: string]: any;
-}
 
 const AppContext = React.createContext(appContext);
 
 export interface AppContextType {
   command: string;
   args: string[];
-  flags: Args;
+  flags: FlagsType;
 }
 
 export default AppContext;

@@ -98,7 +98,7 @@ const initializeProject = async (options: MethodOptions) => {
   const projectSlug = process.env.FUJIX_PROJECT_SLUG;
   const childDirName = process.env.FUJIX_CHILD_DIR;
   const rootDir = ROOT_DIR();
-  const language: Language = options.context.flags['--language'];
+  const language: Language = 'typescript';
   const isTypeScript = language === 'typescript';
 
   const clientDir = process.env.FUJIX_CLIENT_DIR!;

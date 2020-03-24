@@ -1,12 +1,12 @@
 import { mkdirSync } from 'fs';
 import { resolve } from 'path';
-
-import { Args } from '../components/context/AppContext';
 import { parse } from 'url';
+
+import { FlagsType } from '..';
 
 interface InitGeneratorEnvConfig {
   args: string[];
-  flags: Args;
+  flags: FlagsType;
 }
 
 const initGeneratorEnv = ({ args, flags }: InitGeneratorEnvConfig) => {

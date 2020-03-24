@@ -1,7 +1,7 @@
-import { Args } from '../components/context/AppContext';
 import initInk from '../components/common/init-ink';
+import { FlagsType } from '..';
 
-const version = (args: string[], flags: Args) => {
+const version = (args: string[], flags: FlagsType) => {
   return initInk('version', args, flags);
 };
 

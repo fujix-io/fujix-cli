@@ -2,6 +2,7 @@ import { existsSync, mkdirSync } from 'fs';
 import rimraf from 'rimraf';
 
 import { GENERATED_DIR_PATH, MethodOptions } from '.';
+import chalk from 'chalk';
 
 const clearGenerated = async (options: MethodOptions) => {
   const clientDir = process.env.FUJIX_CLIENT_DIR!;
@@ -20,6 +21,10 @@ const clearGenerated = async (options: MethodOptions) => {
       if (err) reject(err);
       resolve();
     }));
+
+    if (options.context.flags['--raw']) {
+      console.log(chalk.cyan(`Generated folder clear: ${GENERATED_DIR_PATH(clientDir)}`));
+    }
   }
 
   return true;

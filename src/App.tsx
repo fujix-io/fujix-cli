@@ -10,14 +10,14 @@ import HealthCheck from './screens/HealthCheck';
 
 import AppProvider from './components/context/AppProvider';
 import { Route, Router } from './components/router/Router';
-import { Args } from './components/context/AppContext';
+import { FlagsType } from '.';
 
 const Divider = require('ink-divider');
 
 interface CLIAppProps extends AppProps {
   command: string;
   args: string[];
-  flags: Args;
+  flags: FlagsType;
 }
 
 const routes = [
@@ -54,11 +54,12 @@ const App: React.FC<CLIAppProps> = ({ command, args, exit, flags }) => {
   }
 
   const rootCommand = args[0];
+  const isSilent = flags['--silent'] || flags['--raw'];
 
   return <Box flexDirection="column">
-      <Divider
+      {!isSilent && <Divider
         title={`Fuji X - ${rootCommand.charAt(0).toUpperCase() + rootCommand.slice(1)}`}
-      />
+      />}
       <AppProvider flags={flags} args={args} command={command}>
         <Router defaultRoute={command}>
           {routes.map(route => (
@@ -66,7 +67,7 @@ const App: React.FC<CLIAppProps> = ({ command, args, exit, flags }) => {
           ))}
         </Router>
       </AppProvider>
-      <Divider />
+      {!isSilent && <Divider />}
     </Box>;
 };
 

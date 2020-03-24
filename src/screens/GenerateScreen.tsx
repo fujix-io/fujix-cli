@@ -23,6 +23,8 @@ type StepStateMap = {
 
 const GenerateScreen = () => {
   const context = useApp();
+  const flags = context.flags;
+  const isSilent = flags['--silent'] || flags['--raw'];
   const isInit = context.args[0] === 'init';
 
   const generatorSteps = getGeneratorSteps(isInit);
@@ -101,6 +103,8 @@ const GenerateScreen = () => {
         </Box>
       </Box>
       || null;
+
+  if (isSilent) return null;
 
   return (
     <Box paddingTop={1} flexDirection="column">
