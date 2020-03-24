@@ -20,3 +20,5 @@ Used for generating bindings code by credentials
   - `-t/--token` - used for providing endpoint token 
   - `-v/--version` - used for displaying package version
   - `-h/--help` - used for displaying list of commands
+  - `--raw` - used for CI/CD command lines. Diplay output with native output-streams. Can be used only with `--token` and `--url` flags
+  - `--silent` - turn off all cli-outputs. Can be used only with `--token` and `--url` flags
