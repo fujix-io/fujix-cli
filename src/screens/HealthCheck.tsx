@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { Box, Color } from 'ink';
+import chalk from 'chalk';
 import Spinner from 'ink-spinner';
 
 import checkIntrospectionQuery from '../helpers/check-introspection-query';
@@ -23,13 +24,19 @@ const HealthCheck = () => {
     setCredentials(credentials);
   }, []);
 
-  const checkEndpoint = async () => {
+  const checkEndpoint = async (): Promise<any> => {
     const isGenerate = args[0] === 'generate' || args[0] === 'init';
 
     const now = Date.now();
     const result = await checkIntrospectionQuery(credentials);
     if (!result) {
       setChecking(false);
+
+      if (flags['--raw']) {
+        console.log(chalk.red(`${credentials.url} does not respond or token is invalid`));
+        return null;
+      }
+
       router.setRoute('message', {
         params: {
           text: <Box paddingLeft={1}>
@@ -63,7 +70,9 @@ const HealthCheck = () => {
 
   const isSilent = flags['--silent'] || flags['--raw'];
 
-  if (isSilent) return null;
+  if (isSilent) {
+    return null;
+  }
 
   if (checking && credentials.url && credentials.token) {
     return (

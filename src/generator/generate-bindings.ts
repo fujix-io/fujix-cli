@@ -1,7 +1,7 @@
 import { generateClient } from '@fujix/client';
+import chalk from 'chalk';
 
 import { GENERATED_DIR_PATH, MethodOptions } from '.';
-import chalk from 'chalk';
 
 const generateBindings = async (options: MethodOptions) => {
   const apiKey = process.env.FUJIX_API_KEY;

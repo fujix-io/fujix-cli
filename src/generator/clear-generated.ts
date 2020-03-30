@@ -1,8 +1,8 @@
 import { existsSync, mkdirSync } from 'fs';
 import rimraf from 'rimraf';
+import chalk from 'chalk';
 
 import { GENERATED_DIR_PATH, MethodOptions } from '.';
-import chalk from 'chalk';
 
 const clearGenerated = async (options: MethodOptions) => {
   const clientDir = process.env.FUJIX_CLIENT_DIR!;
