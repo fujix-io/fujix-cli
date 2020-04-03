@@ -32,8 +32,7 @@
     "@types/react": "^16.9.17",
     "@types/request-promise": "^4.1.45",
     "@types/rimraf": "^2.0.3",
-    "ts-node-dev": "^1.0.0-pre.44",
-    "tslint": "5.13.0",
+    "tslint": "^6.1.1",
     "tslint-config-airbnb": "5.11.1",
     "tslint-config-prettier": "1.18.0"
   },
@@ -41,7 +40,6 @@
     "@fujix/client": "^0.1.0-beta.16",
     "arg": "^4.1.2",
     "chalk": "^3.0.0",
-    "import-jsx": "^3.1.0",
     "ink": "^2.6.0",
     "ink-divider": "^2.0.1",
     "ink-spinner": "^3.0.1",

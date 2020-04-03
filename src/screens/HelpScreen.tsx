@@ -95,7 +95,7 @@ const HelpScreen: React.FC = () => {
         <Divider title={section.title}/>
         <Box paddingTop={1} flexDirection="column">
           {section.commands.map((help, index) =>
-            <Box paddingLeft={1} marginBottom={1} key={index}>
+            <Box paddingLeft={1} marginBottom={section.commands.length === 1 ? 0 : 1} key={index}>
               <Color hex={colors.success}>{help.command} </Color>
               <Color hex={colors.white}>- {help.description}</Color>
             </Box>,
