@@ -36,8 +36,8 @@ const main = async (): Promise<any> => {
     return version(['versions'], args);
   }
 
-  if ((args['--silent'] || args['--raw']) && !(args['--token'] && args['--url'])) {
-    console.log(chalk.redBright('Flags --silent/--raw can be used only with --token and --url flags'));
+  if ((args['--silent'] || args['--raw']) && !(args['--url'])) {
+    console.log(chalk.redBright('Flags --silent/--raw can be used only with --url'));
     return;
   }
 

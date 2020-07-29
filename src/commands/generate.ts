@@ -4,8 +4,8 @@ import initGeneratorEnv from '../helpers/init-generator-env';
 import { FlagsType } from '..';
 
 const generate = (args: string[], flags: FlagsType) => {
-  if (flags['--url'] && flags['--token']) {
-    process.env.FUJIX_API_KEY = flags['--token'];
+  if (flags['--url']) {
+    process.env.FUJIX_API_KEY = flags['--token'] || 'unknown';
     process.env.FUJIX_PROJECT_URL = flags['--url'];
 
     initGeneratorEnv({ args, flags });
