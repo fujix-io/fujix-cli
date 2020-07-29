@@ -67,6 +67,18 @@ const helps: HelpSection[] = [
         </React.Fragment>,
         description: 'Fuji X API key for your endpoint',
       },
+      {
+        command: <React.Fragment>
+          <Color hex={colors.success}>--raw</Color>
+        </React.Fragment>,
+        description: 'Diplay output with native output-streams',
+      },
+      {
+        command: <React.Fragment>
+          <Color hex={colors.success}>--silent</Color>
+        </React.Fragment>,
+        description: 'Turn off all cli-outputs',
+      },
       // {
       //   command: <React.Fragment>
       //     <Color hex={colors.success}>--language/-l </Color>
