@@ -42,10 +42,10 @@
     reflect-metadata "^0.1.12"
     tslib "^1.8.1"
 
-"@fujix/client@^0.1.1-beta.15":
-  version "0.1.1-beta.15"
-  resolved "https://registry.yarnpkg.com/@fujix/client/-/client-0.1.1-beta.15.tgz#a52752fe55db4e7c67cc618236995a0fa78d5a8e"
-  integrity sha512-eqp/Gu2QZZIfb/6d4hAe0cWQ/GN6/tHh0cRpccMTJCuSHxrO2JzO/InvqyHdg0ybBFIIOnE7Xkdph0HvPktmKA==
+"@fujix/client@^0.1.1-beta.16":
+  version "0.1.1-beta.16"
+  resolved "https://registry.yarnpkg.com/@fujix/client/-/client-0.1.1-beta.16.tgz#80a12b19e0e2fe6d818326d10b69f421729bc508"
+  integrity sha512-/R1QLgZqmxVEWV5EUqhwo3fxij9/4V8/jlrEIAtLVoeKyeRCApZpeKZditQXWlsgtDEdv9FUwFgkwtfQMRBUgw==
 
 "@types/bluebird@*":
   version "3.5.29"
