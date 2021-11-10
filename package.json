@@ -37,7 +37,7 @@
     "tslint-config-prettier": "1.18.0"
   },
   "dependencies": {
-    "@fujix/client": "^1.0.7",
+    "@fujix/client": "^1.0.12",
     "arg": "^4.1.2",
     "chalk": "^3.0.0",
     "ink": "^2.6.0",
