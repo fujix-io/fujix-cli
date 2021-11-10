@@ -17,7 +17,7 @@ const clearGenerated = async (options: MethodOptions) => {
   }, clientDirPaths[0]);
 
   if (existsSync(GENERATED_DIR_PATH(clientDir))) {
-    await new Promise((resolve, reject) => rimraf(GENERATED_DIR_PATH(clientDir), (err) => {
+    await new Promise<void>((resolve, reject) => rimraf(GENERATED_DIR_PATH(clientDir), (err) => {
       if (err) reject(err);
       resolve();
     }));
